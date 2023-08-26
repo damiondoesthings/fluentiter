@@ -822,10 +822,7 @@
 
             <details class="quote">
               <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 116</span>
-<span class="normal"> 117</span>
-<span class="normal"> 118</span>
-<span class="normal"> 119</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 119</span>
 <span class="normal"> 120</span>
 <span class="normal"> 121</span>
 <span class="normal"> 122</span>
@@ -1765,7 +1762,16 @@
 <span class="normal">1056</span>
 <span class="normal">1057</span>
 <span class="normal">1058</span>
-<span class="normal">1059</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">FluentIterator</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">T</span><span class="p">],</span> <span class="n">Iterator</span><span class="p">):</span>
+<span class="normal">1059</span>
+<span class="normal">1060</span>
+<span class="normal">1061</span>
+<span class="normal">1062</span>
+<span class="normal">1063</span>
+<span class="normal">1064</span>
+<span class="normal">1065</span>
+<span class="normal">1066</span>
+<span class="normal">1067</span>
+<span class="normal">1068</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">FluentIterator</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">T</span><span class="p">],</span> <span class="n">Iterator</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">iterable</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">T</span><span class="p">],</span>
@@ -1822,6 +1828,8 @@
 <span class="sd">        Optional[T]</span>
 <span class="sd">            Next element or None if iterator is exhausted</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO: consider raising StopIteration instead of</span>
+        <span class="c1"># returning None</span>
         <span class="n">elem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next</span><span class="p">()</span>
         <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">elem</span> <span class="ow">is</span> <span class="n">ITER_STOP</span> <span class="k">else</span> <span class="n">elem</span>
 
@@ -1883,6 +1891,7 @@
 <span class="sd">        &gt;&gt;&gt; iterator([]).last()</span>
 <span class="sd">            None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO: raise EmptyIteratorError instead</span>
         <span class="n">x</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
             <span class="n">x</span> <span class="o">=</span> <span class="n">y</span>
@@ -1893,7 +1902,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the nth element of the iterator.</span>
 <span class="sd">        The index starts at `0`, i.e. `nth(0)` returns the first element.</span>
-<span class="sd">        If the index is greater than or equal to the lenght of the iterator, this will return None.</span>
+<span class="sd">        If the index is greater than or equal to the length of the iterator, this will return None.</span>
 
 <span class="sd">        **NOTE:** This method consumes the iterator up to and including `index`.</span>
 
@@ -2134,7 +2143,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; week = [&quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday, &quot;Sunday&quot;]</span>
+<span class="sd">        &gt;&gt;&gt; week = [&quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday&quot;, &quot;Sunday&quot;]</span>
 <span class="sd">        &gt;&gt;&gt; iterator(week).skip_while(lambda x: x != &quot;Saturday&quot;).to_list()</span>
 <span class="sd">            [&quot;Saturday&quot;, &quot;Sunday&quot;]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -2349,7 +2358,7 @@
     <span class="k">def</span> <span class="nf">to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Collect this iterator into a list, completely consuming it.</span>
-<span class="sd">        This is just a convinience method for `list()`.</span>
+<span class="sd">        This is just a convenience method for `list()`.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -2358,8 +2367,8 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; iterator([&quot;bucket&quot;, &quot;to-do&quot;, &quot;whish&quot;]).to_list()</span>
-<span class="sd">            [&quot;bucket&quot;, &quot;to-do&quot;, &quot;whish&quot;]</span>
+<span class="sd">        &gt;&gt;&gt; iterator([&quot;bucket&quot;, &quot;to-do&quot;, &quot;wish&quot;]).to_list()</span>
+<span class="sd">            [&quot;bucket&quot;, &quot;to-do&quot;, &quot;wish&quot;]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
@@ -2426,16 +2435,18 @@
         <span class="c1"># TODO</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
-    <span class="k">def</span> <span class="nf">reduce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Union</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">R</span><span class="p">]],</span> <span class="n">R</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">R</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">reduce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Union</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">R</span><span class="p">]],</span> <span class="n">R</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">R</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Reduce all elements into a single element by repeatedly applying `func`.</span>
 
-<span class="sd">        The given function must take two parameters, the returned of the previous iteration</span>
-<span class="sd">        and the element of this iteration. For the first iteration this will be the</span>
+<span class="sd">        The given function must take two parameters, the returned value</span>
+<span class="sd">        of the previous iteration and the element of this iteration.</span>
+<span class="sd">        For the first iteration this will be the</span>
 <span class="sd">        first and second element of this iterator resepctively.</span>
 
 <span class="sd">        **NOTE:** To return the elements instead of the reduction, use `.scan`.</span>
-<span class="sd">        **NOTE:** To specify the an `initial_value`, use `.fold`.</span>
+
+<span class="sd">        **NOTE:** To specify an `initial_value`, use `.fold`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2444,8 +2455,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Optional[R]</span>
-<span class="sd">            Reduced element or </span>
+<span class="sd">        Union[T, R]</span>
+<span class="sd">            Reduced element or first element of the iterator if it only has one.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2607,7 +2618,7 @@
 
     <span class="k">def</span> <span class="nf">unzip</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="s2">&quot;FluentIterator[Tuple[T, U]]&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">,</span> <span class="s2">&quot;FluentIterator[U]&quot;</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Unzip this iterator into two iterators, by building the first one from all first</span>
+<span class="sd">        Unzip an iterator of tuples into two iterators, by building the first one from all first</span>
 <span class="sd">        elements of each tuple, and the second from all second elements of the tuples.</span>
 
 <span class="sd">        Returns</span>
@@ -2665,7 +2676,8 @@
 <span class="sd">        EmptyIteratorError</span>
 <span class="sd">            If trying to sum an empty iterator</span>
 
-<span class="sd">        Example</span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; iterator([8, 14, 22]).sum()</span>
 <span class="sd">            42</span>
 <span class="sd">        &gt;&gt;&gt; iterator([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]).sum()</span>
@@ -2807,15 +2819,7 @@ of this iterator, otherwise return <code>False</code>.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">813</span>
-<span class="normal">814</span>
-<span class="normal">815</span>
-<span class="normal">816</span>
-<span class="normal">817</span>
-<span class="normal">818</span>
-<span class="normal">819</span>
-<span class="normal">820</span>
-<span class="normal">821</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">821</span>
 <span class="normal">822</span>
 <span class="normal">823</span>
 <span class="normal">824</span>
@@ -2832,7 +2836,15 @@ of this iterator, otherwise return <code>False</code>.</p>
 <span class="normal">835</span>
 <span class="normal">836</span>
 <span class="normal">837</span>
-<span class="normal">838</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">any</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="normal">838</span>
+<span class="normal">839</span>
+<span class="normal">840</span>
+<span class="normal">841</span>
+<span class="normal">842</span>
+<span class="normal">843</span>
+<span class="normal">844</span>
+<span class="normal">845</span>
+<span class="normal">846</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">any</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return `True` if the given function returns `True` for any element</span>
 <span class="sd">    of this iterator, otherwise return `False`.</span>
@@ -2945,13 +2957,7 @@ yield all items of <code>other</code>.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">293</span>
-<span class="normal">294</span>
-<span class="normal">295</span>
-<span class="normal">296</span>
-<span class="normal">297</span>
-<span class="normal">298</span>
-<span class="normal">299</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">299</span>
 <span class="normal">300</span>
 <span class="normal">301</span>
 <span class="normal">302</span>
@@ -2966,7 +2972,13 @@ yield all items of <code>other</code>.</p>
 <span class="normal">311</span>
 <span class="normal">312</span>
 <span class="normal">313</span>
-<span class="normal">314</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">chain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">U</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[Union[T, U]]&quot;</span><span class="p">:</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">chain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">U</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[Union[T, U]]&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Chain another iterable to the end of this iterator.</span>
 <span class="sd">    The returned iterator will first yield all items of `self` and then</span>
@@ -3044,12 +3056,7 @@ This will consume the iterator.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">194</span>
-<span class="normal">195</span>
-<span class="normal">196</span>
-<span class="normal">197</span>
-<span class="normal">198</span>
-<span class="normal">199</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">199</span>
 <span class="normal">200</span>
 <span class="normal">201</span>
 <span class="normal">202</span>
@@ -3062,7 +3069,12 @@ This will consume the iterator.</p>
 <span class="normal">209</span>
 <span class="normal">210</span>
 <span class="normal">211</span>
-<span class="normal">212</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Count the elements in this iterator.</span>
 <span class="sd">    This will consume the iterator.</span>
@@ -3145,30 +3157,30 @@ It just goes round and round....</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">975</span>
-<span class="normal">976</span>
-<span class="normal">977</span>
-<span class="normal">978</span>
-<span class="normal">979</span>
-<span class="normal">980</span>
-<span class="normal">981</span>
-<span class="normal">982</span>
-<span class="normal">983</span>
-<span class="normal">984</span>
-<span class="normal">985</span>
-<span class="normal">986</span>
-<span class="normal">987</span>
-<span class="normal">988</span>
-<span class="normal">989</span>
-<span class="normal">990</span>
-<span class="normal">991</span>
-<span class="normal">992</span>
-<span class="normal">993</span>
-<span class="normal">994</span>
-<span class="normal">995</span>
-<span class="normal">996</span>
-<span class="normal">997</span>
-<span class="normal">998</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">:</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 983</span>
+<span class="normal"> 984</span>
+<span class="normal"> 985</span>
+<span class="normal"> 986</span>
+<span class="normal"> 987</span>
+<span class="normal"> 988</span>
+<span class="normal"> 989</span>
+<span class="normal"> 990</span>
+<span class="normal"> 991</span>
+<span class="normal"> 992</span>
+<span class="normal"> 993</span>
+<span class="normal"> 994</span>
+<span class="normal"> 995</span>
+<span class="normal"> 996</span>
+<span class="normal"> 997</span>
+<span class="normal"> 998</span>
+<span class="normal"> 999</span>
+<span class="normal">1000</span>
+<span class="normal">1001</span>
+<span class="normal">1002</span>
+<span class="normal">1003</span>
+<span class="normal">1004</span>
+<span class="normal">1005</span>
+<span class="normal">1006</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Make an infinite iterator by repeating the values from this one forever.</span>
 <span class="sd">    It just goes round and round....</span>
@@ -3247,13 +3259,7 @@ It just goes round and round....</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">417</span>
-<span class="normal">418</span>
-<span class="normal">419</span>
-<span class="normal">420</span>
-<span class="normal">421</span>
-<span class="normal">422</span>
-<span class="normal">423</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">423</span>
 <span class="normal">424</span>
 <span class="normal">425</span>
 <span class="normal">426</span>
@@ -3262,7 +3268,13 @@ It just goes round and round....</p>
 <span class="normal">429</span>
 <span class="normal">430</span>
 <span class="normal">431</span>
-<span class="normal">432</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[Tuple[int, T]]&quot;</span><span class="p">:</span>
+<span class="normal">432</span>
+<span class="normal">433</span>
+<span class="normal">434</span>
+<span class="normal">435</span>
+<span class="normal">436</span>
+<span class="normal">437</span>
+<span class="normal">438</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[Tuple[int, T]]&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create an iterator which yields tuples of `(index, value)`.</span>
 
@@ -3366,13 +3378,7 @@ If the function returns <code>False</code> the iterator will skip the item.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">366</span>
-<span class="normal">367</span>
-<span class="normal">368</span>
-<span class="normal">369</span>
-<span class="normal">370</span>
-<span class="normal">371</span>
-<span class="normal">372</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">372</span>
 <span class="normal">373</span>
 <span class="normal">374</span>
 <span class="normal">375</span>
@@ -3390,7 +3396,13 @@ If the function returns <code>False</code> the iterator will skip the item.</p>
 <span class="normal">387</span>
 <span class="normal">388</span>
 <span class="normal">389</span>
-<span class="normal">390</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">:</span>
+<span class="normal">390</span>
+<span class="normal">391</span>
+<span class="normal">392</span>
+<span class="normal">393</span>
+<span class="normal">394</span>
+<span class="normal">395</span>
+<span class="normal">396</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create a filtered iterator by applying a function to every element</span>
 <span class="sd">    to evaluate whether or not it should be yielded.</span>
@@ -3504,13 +3516,7 @@ element of the iterator and return the result only if it is not <code>None</code
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">392</span>
-<span class="normal">393</span>
-<span class="normal">394</span>
-<span class="normal">395</span>
-<span class="normal">396</span>
-<span class="normal">397</span>
-<span class="normal">398</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">398</span>
 <span class="normal">399</span>
 <span class="normal">400</span>
 <span class="normal">401</span>
@@ -3527,7 +3533,13 @@ element of the iterator and return the result only if it is not <code>None</code
 <span class="normal">412</span>
 <span class="normal">413</span>
 <span class="normal">414</span>
-<span class="normal">415</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">filter_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">R</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[R]&quot;</span><span class="p">:</span>
+<span class="normal">415</span>
+<span class="normal">416</span>
+<span class="normal">417</span>
+<span class="normal">418</span>
+<span class="normal">419</span>
+<span class="normal">420</span>
+<span class="normal">421</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">filter_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">R</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[R]&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A combination of `.map` and `.filter`. Apply a given function to every</span>
 <span class="sd">    element of the iterator and return the result only if it is not `None`.</span>
@@ -3663,15 +3675,7 @@ returns <code>True</code>.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">840</span>
-<span class="normal">841</span>
-<span class="normal">842</span>
-<span class="normal">843</span>
-<span class="normal">844</span>
-<span class="normal">845</span>
-<span class="normal">846</span>
-<span class="normal">847</span>
-<span class="normal">848</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">848</span>
 <span class="normal">849</span>
 <span class="normal">850</span>
 <span class="normal">851</span>
@@ -3692,7 +3696,15 @@ returns <code>True</code>.</p>
 <span class="normal">866</span>
 <span class="normal">867</span>
 <span class="normal">868</span>
-<span class="normal">869</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+<span class="normal">869</span>
+<span class="normal">870</span>
+<span class="normal">871</span>
+<span class="normal">872</span>
+<span class="normal">873</span>
+<span class="normal">874</span>
+<span class="normal">875</span>
+<span class="normal">876</span>
+<span class="normal">877</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Find and return the first element for which the given function</span>
 <span class="sd">    returns `True`.</span>
@@ -3809,13 +3821,7 @@ but also flattens the results if they are iterables.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">622</span>
-<span class="normal">623</span>
-<span class="normal">624</span>
-<span class="normal">625</span>
-<span class="normal">626</span>
-<span class="normal">627</span>
-<span class="normal">628</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">628</span>
 <span class="normal">629</span>
 <span class="normal">630</span>
 <span class="normal">631</span>
@@ -3832,7 +3838,13 @@ but also flattens the results if they are iterables.</p>
 <span class="normal">642</span>
 <span class="normal">643</span>
 <span class="normal">644</span>
-<span class="normal">645</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">flat_map</span><span class="p">(</span>
+<span class="normal">645</span>
+<span class="normal">646</span>
+<span class="normal">647</span>
+<span class="normal">648</span>
+<span class="normal">649</span>
+<span class="normal">650</span>
+<span class="normal">651</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">flat_map</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">:</span> <span class="s2">&quot;FluentIterator[Iterable[Inner]]&quot;</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Inner</span><span class="p">],</span> <span class="n">R</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[R]&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -3912,13 +3924,7 @@ iterator.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">647</span>
-<span class="normal">648</span>
-<span class="normal">649</span>
-<span class="normal">650</span>
-<span class="normal">651</span>
-<span class="normal">652</span>
-<span class="normal">653</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">653</span>
 <span class="normal">654</span>
 <span class="normal">655</span>
 <span class="normal">656</span>
@@ -3929,7 +3935,13 @@ iterator.</p>
 <span class="normal">661</span>
 <span class="normal">662</span>
 <span class="normal">663</span>
-<span class="normal">664</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span>
+<span class="normal">664</span>
+<span class="normal">665</span>
+<span class="normal">666</span>
+<span class="normal">667</span>
+<span class="normal">668</span>
+<span class="normal">669</span>
+<span class="normal">670</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">:</span> <span class="s2">&quot;FluentIterator[Union[Inner, Iterable[Inner]]]&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[Inner]&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -4053,13 +4065,7 @@ on the next iteration.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">743</span>
-<span class="normal">744</span>
-<span class="normal">745</span>
-<span class="normal">746</span>
-<span class="normal">747</span>
-<span class="normal">748</span>
-<span class="normal">749</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">749</span>
 <span class="normal">750</span>
 <span class="normal">751</span>
 <span class="normal">752</span>
@@ -4085,7 +4091,13 @@ on the next iteration.</p>
 <span class="normal">772</span>
 <span class="normal">773</span>
 <span class="normal">774</span>
-<span class="normal">775</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">fold</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_value</span><span class="p">:</span> <span class="n">A</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">A</span><span class="p">,</span> <span class="n">T</span><span class="p">],</span> <span class="n">S</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">A</span><span class="p">:</span>
+<span class="normal">775</span>
+<span class="normal">776</span>
+<span class="normal">777</span>
+<span class="normal">778</span>
+<span class="normal">779</span>
+<span class="normal">780</span>
+<span class="normal">781</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">fold</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_value</span><span class="p">:</span> <span class="n">A</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">A</span><span class="p">,</span> <span class="n">T</span><span class="p">],</span> <span class="n">S</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">A</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Fold every element of this iterator into a single value by repeatedly</span>
 <span class="sd">    applying `func`.</span>
@@ -4211,13 +4223,7 @@ Keep this in mind.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">666</span>
-<span class="normal">667</span>
-<span class="normal">668</span>
-<span class="normal">669</span>
-<span class="normal">670</span>
-<span class="normal">671</span>
-<span class="normal">672</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">672</span>
 <span class="normal">673</span>
 <span class="normal">674</span>
 <span class="normal">675</span>
@@ -4240,7 +4246,13 @@ Keep this in mind.</p>
 <span class="normal">692</span>
 <span class="normal">693</span>
 <span class="normal">694</span>
-<span class="normal">695</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">inspect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">:</span>
+<span class="normal">695</span>
+<span class="normal">696</span>
+<span class="normal">697</span>
+<span class="normal">698</span>
+<span class="normal">699</span>
+<span class="normal">700</span>
+<span class="normal">701</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">inspect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return an iterator which applies `func` to every element, but</span>
 <span class="sd">    still yields the original elements.</span>
@@ -4330,12 +4342,7 @@ this returns None.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">214</span>
-<span class="normal">215</span>
-<span class="normal">216</span>
-<span class="normal">217</span>
-<span class="normal">218</span>
-<span class="normal">219</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">219</span>
 <span class="normal">220</span>
 <span class="normal">221</span>
 <span class="normal">222</span>
@@ -4353,7 +4360,13 @@ this returns None.</p>
 <span class="normal">234</span>
 <span class="normal">235</span>
 <span class="normal">236</span>
-<span class="normal">237</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">last</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">last</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return the last element in this iterator.</span>
 <span class="sd">    If the iterator does not contain any elements,</span>
@@ -4373,6 +4386,7 @@ this returns None.</p>
 <span class="sd">    &gt;&gt;&gt; iterator([]).last()</span>
 <span class="sd">        None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO: raise EmptyIteratorError instead</span>
     <span class="n">x</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">y</span>
@@ -4465,13 +4479,7 @@ but as items are yielded from the iterator.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">341</span>
-<span class="normal">342</span>
-<span class="normal">343</span>
-<span class="normal">344</span>
-<span class="normal">345</span>
-<span class="normal">346</span>
-<span class="normal">347</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">347</span>
 <span class="normal">348</span>
 <span class="normal">349</span>
 <span class="normal">350</span>
@@ -4488,7 +4496,13 @@ but as items are yielded from the iterator.</p>
 <span class="normal">361</span>
 <span class="normal">362</span>
 <span class="normal">363</span>
-<span class="normal">364</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="n">R</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[R]&quot;</span><span class="p">:</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span>
+<span class="normal">370</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="n">R</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[R]&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Apply a given function `func` to every element of the iterator,</span>
 <span class="sd">    and return an iterator yielding the results of those function calls.</span>
@@ -4600,13 +4614,7 @@ all elements of the iterator and yields the results. Once the function returns
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">516</span>
-<span class="normal">517</span>
-<span class="normal">518</span>
-<span class="normal">519</span>
-<span class="normal">520</span>
-<span class="normal">521</span>
-<span class="normal">522</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">522</span>
 <span class="normal">523</span>
 <span class="normal">524</span>
 <span class="normal">525</span>
@@ -4622,7 +4630,13 @@ all elements of the iterator and yields the results. Once the function returns
 <span class="normal">535</span>
 <span class="normal">536</span>
 <span class="normal">537</span>
-<span class="normal">538</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">map_while</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="n">Union</span><span class="p">[</span><span class="n">R</span><span class="p">,</span> <span class="kc">None</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[R]&quot;</span><span class="p">:</span>
+<span class="normal">538</span>
+<span class="normal">539</span>
+<span class="normal">540</span>
+<span class="normal">541</span>
+<span class="normal">542</span>
+<span class="normal">543</span>
+<span class="normal">544</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">map_while</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="n">Union</span><span class="p">[</span><span class="n">R</span><span class="p">,</span> <span class="kc">None</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[R]&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A combination of `map` and `take_while`. Applies the given function to</span>
 <span class="sd">    all elements of the iterator and yields the results. Once the function returns</span>
@@ -4756,15 +4770,7 @@ be compared instead of the elements themselves.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">896</span>
-<span class="normal">897</span>
-<span class="normal">898</span>
-<span class="normal">899</span>
-<span class="normal">900</span>
-<span class="normal">901</span>
-<span class="normal">902</span>
-<span class="normal">903</span>
-<span class="normal">904</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">904</span>
 <span class="normal">905</span>
 <span class="normal">906</span>
 <span class="normal">907</span>
@@ -4784,7 +4790,15 @@ be compared instead of the elements themselves.</p>
 <span class="normal">921</span>
 <span class="normal">922</span>
 <span class="normal">923</span>
-<span class="normal">924</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">max</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="n">T</span><span class="p">],</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+<span class="normal">924</span>
+<span class="normal">925</span>
+<span class="normal">926</span>
+<span class="normal">927</span>
+<span class="normal">928</span>
+<span class="normal">929</span>
+<span class="normal">930</span>
+<span class="normal">931</span>
+<span class="normal">932</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">max</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="n">T</span><span class="p">],</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return the maximum element in this iterator.</span>
 
@@ -4924,15 +4938,7 @@ be compared instead of the elements themselves.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">926</span>
-<span class="normal">927</span>
-<span class="normal">928</span>
-<span class="normal">929</span>
-<span class="normal">930</span>
-<span class="normal">931</span>
-<span class="normal">932</span>
-<span class="normal">933</span>
-<span class="normal">934</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">934</span>
 <span class="normal">935</span>
 <span class="normal">936</span>
 <span class="normal">937</span>
@@ -4952,7 +4958,15 @@ be compared instead of the elements themselves.</p>
 <span class="normal">951</span>
 <span class="normal">952</span>
 <span class="normal">953</span>
-<span class="normal">954</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">min</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="n">T</span><span class="p">],</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+<span class="normal">954</span>
+<span class="normal">955</span>
+<span class="normal">956</span>
+<span class="normal">957</span>
+<span class="normal">958</span>
+<span class="normal">959</span>
+<span class="normal">960</span>
+<span class="normal">961</span>
+<span class="normal">962</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">min</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="n">T</span><span class="p">],</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return the minimum element in this iterator.</span>
 
@@ -5030,10 +5044,7 @@ be compared instead of the elements themselves.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">162</span>
-<span class="normal">163</span>
-<span class="normal">164</span>
-<span class="normal">165</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">165</span>
 <span class="normal">166</span>
 <span class="normal">167</span>
 <span class="normal">168</span>
@@ -5042,7 +5053,12 @@ be compared instead of the elements themselves.</p>
 <span class="normal">171</span>
 <span class="normal">172</span>
 <span class="normal">173</span>
-<span class="normal">174</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Advances the iterator and returns the next value.</span>
 
@@ -5053,6 +5069,8 @@ be compared instead of the elements themselves.</p>
 <span class="sd">    Optional[T]</span>
 <span class="sd">        Next element or None if iterator is exhausted</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO: consider raising StopIteration instead of</span>
+    <span class="c1"># returning None</span>
     <span class="n">elem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next</span><span class="p">()</span>
     <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">elem</span> <span class="ow">is</span> <span class="n">ITER_STOP</span> <span class="k">else</span> <span class="n">elem</span>
 </code></pre></div></td></tr></table></div>
@@ -5077,7 +5095,7 @@ be compared instead of the elements themselves.</p>
   
       <p>Returns the nth element of the iterator.
 The index starts at <code>0</code>, i.e. <code>nth(0)</code> returns the first element.
-If the index is greater than or equal to the lenght of the iterator, this will return None.</p>
+If the index is greater than or equal to the length of the iterator, this will return None.</p>
 <p><strong>NOTE:</strong> This method consumes the iterator up to and including <code>index</code>.</p>
 
 
@@ -5136,13 +5154,7 @@ If the index is greater than or equal to the lenght of the iterator, this will r
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">240</span>
-<span class="normal">241</span>
-<span class="normal">242</span>
-<span class="normal">243</span>
-<span class="normal">244</span>
-<span class="normal">245</span>
-<span class="normal">246</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">246</span>
 <span class="normal">247</span>
 <span class="normal">248</span>
 <span class="normal">249</span>
@@ -5159,11 +5171,17 @@ If the index is greater than or equal to the lenght of the iterator, this will r
 <span class="normal">260</span>
 <span class="normal">261</span>
 <span class="normal">262</span>
-<span class="normal">263</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">nth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">nth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the nth element of the iterator.</span>
 <span class="sd">    The index starts at `0`, i.e. `nth(0)` returns the first element.</span>
-<span class="sd">    If the index is greater than or equal to the lenght of the iterator, this will return None.</span>
+<span class="sd">    If the index is greater than or equal to the length of the iterator, this will return None.</span>
 
 <span class="sd">    **NOTE:** This method consumes the iterator up to and including `index`.</span>
 
@@ -5274,13 +5292,7 @@ of the second iterator</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">714</span>
-<span class="normal">715</span>
-<span class="normal">716</span>
-<span class="normal">717</span>
-<span class="normal">718</span>
-<span class="normal">719</span>
-<span class="normal">720</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">720</span>
 <span class="normal">721</span>
 <span class="normal">722</span>
 <span class="normal">723</span>
@@ -5300,7 +5312,13 @@ of the second iterator</p>
 <span class="normal">737</span>
 <span class="normal">738</span>
 <span class="normal">739</span>
-<span class="normal">740</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">partition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">,</span> <span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">]:</span>
+<span class="normal">740</span>
+<span class="normal">741</span>
+<span class="normal">742</span>
+<span class="normal">743</span>
+<span class="normal">744</span>
+<span class="normal">745</span>
+<span class="normal">746</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">partition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">,</span> <span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create two iterators from this one, by applying `func` to every element.</span>
 <span class="sd">    All elements for which `func(element) == True` will become part of the</span>
@@ -5413,13 +5431,7 @@ the same element</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">434</span>
-<span class="normal">435</span>
-<span class="normal">436</span>
-<span class="normal">437</span>
-<span class="normal">438</span>
-<span class="normal">439</span>
-<span class="normal">440</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">440</span>
 <span class="normal">441</span>
 <span class="normal">442</span>
 <span class="normal">443</span>
@@ -5442,7 +5454,13 @@ the same element</p>
 <span class="normal">460</span>
 <span class="normal">461</span>
 <span class="normal">462</span>
-<span class="normal">463</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">peek</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+<span class="normal">463</span>
+<span class="normal">464</span>
+<span class="normal">465</span>
+<span class="normal">466</span>
+<span class="normal">467</span>
+<span class="normal">468</span>
+<span class="normal">469</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">peek</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return the next element of the iterator, **without** advancing it.</span>
 
@@ -5559,15 +5577,7 @@ behaviour aligns with Pythons <code>str.find</code>.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">871</span>
-<span class="normal">872</span>
-<span class="normal">873</span>
-<span class="normal">874</span>
-<span class="normal">875</span>
-<span class="normal">876</span>
-<span class="normal">877</span>
-<span class="normal">878</span>
-<span class="normal">879</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">879</span>
 <span class="normal">880</span>
 <span class="normal">881</span>
 <span class="normal">882</span>
@@ -5582,7 +5592,15 @@ behaviour aligns with Pythons <code>str.find</code>.</p>
 <span class="normal">891</span>
 <span class="normal">892</span>
 <span class="normal">893</span>
-<span class="normal">894</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Literal</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]:</span>
+<span class="normal">894</span>
+<span class="normal">895</span>
+<span class="normal">896</span>
+<span class="normal">897</span>
+<span class="normal">898</span>
+<span class="normal">899</span>
+<span class="normal">900</span>
+<span class="normal">901</span>
+<span class="normal">902</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Literal</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Find the index of the first element for which `func(element) == True`.</span>
 
@@ -5685,16 +5703,7 @@ behaviour aligns with Pythons <code>str.find</code>.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1025</span>
-<span class="normal">1026</span>
-<span class="normal">1027</span>
-<span class="normal">1028</span>
-<span class="normal">1029</span>
-<span class="normal">1030</span>
-<span class="normal">1031</span>
-<span class="normal">1032</span>
-<span class="normal">1033</span>
-<span class="normal">1034</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1034</span>
 <span class="normal">1035</span>
 <span class="normal">1036</span>
 <span class="normal">1037</span>
@@ -5703,7 +5712,16 @@ behaviour aligns with Pythons <code>str.find</code>.</p>
 <span class="normal">1040</span>
 <span class="normal">1041</span>
 <span class="normal">1042</span>
-<span class="normal">1043</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">product</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+<span class="normal">1043</span>
+<span class="normal">1044</span>
+<span class="normal">1045</span>
+<span class="normal">1046</span>
+<span class="normal">1047</span>
+<span class="normal">1048</span>
+<span class="normal">1049</span>
+<span class="normal">1050</span>
+<span class="normal">1051</span>
+<span class="normal">1052</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">product</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return the product of all elements in this iterator.</span>
 
@@ -5743,11 +5761,12 @@ behaviour aligns with Pythons <code>str.find</code>.</p>
   <div class="doc doc-contents ">
   
       <p>Reduce all elements into a single element by repeatedly applying <code>func</code>.</p>
-<p>The given function must take two parameters, the returned of the previous iteration
-and the element of this iteration. For the first iteration this will be the
+<p>The given function must take two parameters, the returned value
+of the previous iteration and the element of this iteration.
+For the first iteration this will be the
 first and second element of this iterator resepctively.</p>
-<p><strong>NOTE:</strong> To return the elements instead of the reduction, use <code>.scan</code>.
-<strong>NOTE:</strong> To specify the an <code>initial_value</code>, use <code>.fold</code>.</p>
+<p><strong>NOTE:</strong> To return the elements instead of the reduction, use <code>.scan</code>.</p>
+<p><strong>NOTE:</strong> To specify an <code>initial_value</code>, use <code>.fold</code>.</p>
 
 
 
@@ -5792,11 +5811,11 @@ first and second element of this iterator resepctively.</p>
     <tbody>
         <tr>
           <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="fluentiter.fluentiterator.R">R</span>]</code>
+                <code><span title="typing.Union">Union</span>[<span title="fluentiter.fluentiterator.T">T</span>, <span title="fluentiter.fluentiterator.R">R</span>]</code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>Reduced element or </p>
+              <p>Reduced element or first element of the iterator if it only has one.</p>
             </div>
           </td>
         </tr>
@@ -5836,13 +5855,7 @@ first and second element of this iterator resepctively.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">777</span>
-<span class="normal">778</span>
-<span class="normal">779</span>
-<span class="normal">780</span>
-<span class="normal">781</span>
-<span class="normal">782</span>
-<span class="normal">783</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">783</span>
 <span class="normal">784</span>
 <span class="normal">785</span>
 <span class="normal">786</span>
@@ -5870,16 +5883,26 @@ first and second element of this iterator resepctively.</p>
 <span class="normal">808</span>
 <span class="normal">809</span>
 <span class="normal">810</span>
-<span class="normal">811</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">reduce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Union</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">R</span><span class="p">]],</span> <span class="n">R</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">R</span><span class="p">]:</span>
+<span class="normal">811</span>
+<span class="normal">812</span>
+<span class="normal">813</span>
+<span class="normal">814</span>
+<span class="normal">815</span>
+<span class="normal">816</span>
+<span class="normal">817</span>
+<span class="normal">818</span>
+<span class="normal">819</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">reduce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Union</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">R</span><span class="p">]],</span> <span class="n">R</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">R</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Reduce all elements into a single element by repeatedly applying `func`.</span>
 
-<span class="sd">    The given function must take two parameters, the returned of the previous iteration</span>
-<span class="sd">    and the element of this iteration. For the first iteration this will be the</span>
+<span class="sd">    The given function must take two parameters, the returned value</span>
+<span class="sd">    of the previous iteration and the element of this iteration.</span>
+<span class="sd">    For the first iteration this will be the</span>
 <span class="sd">    first and second element of this iterator resepctively.</span>
 
 <span class="sd">    **NOTE:** To return the elements instead of the reduction, use `.scan`.</span>
-<span class="sd">    **NOTE:** To specify the an `initial_value`, use `.fold`.</span>
+
+<span class="sd">    **NOTE:** To specify an `initial_value`, use `.fold`.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -5888,8 +5911,8 @@ first and second element of this iterator resepctively.</p>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    Optional[R]</span>
-<span class="sd">        Reduced element or </span>
+<span class="sd">    Union[T, R]</span>
+<span class="sd">        Reduced element or first element of the iterator if it only has one.</span>
 
 <span class="sd">    Raises</span>
 <span class="sd">    ------</span>
@@ -6009,13 +6032,7 @@ as many elements in Python (e.g. integers) are immutable and need to be reassign
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">589</span>
-<span class="normal">590</span>
-<span class="normal">591</span>
-<span class="normal">592</span>
-<span class="normal">593</span>
-<span class="normal">594</span>
-<span class="normal">595</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">595</span>
 <span class="normal">596</span>
 <span class="normal">597</span>
 <span class="normal">598</span>
@@ -6040,7 +6057,13 @@ as many elements in Python (e.g. integers) are immutable and need to be reassign
 <span class="normal">617</span>
 <span class="normal">618</span>
 <span class="normal">619</span>
-<span class="normal">620</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">:</span> <span class="n">S</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">S</span><span class="p">,</span> <span class="n">T</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">S</span><span class="p">,</span> <span class="n">R</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[R]&quot;</span><span class="p">:</span>
+<span class="normal">620</span>
+<span class="normal">621</span>
+<span class="normal">622</span>
+<span class="normal">623</span>
+<span class="normal">624</span>
+<span class="normal">625</span>
+<span class="normal">626</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">:</span> <span class="n">S</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">S</span><span class="p">,</span> <span class="n">T</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">S</span><span class="p">,</span> <span class="n">R</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[R]&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create an iterator which holds some internal state and applies some function</span>
 <span class="sd">    using that state to every element, returning a tuple of the new state</span>
@@ -6122,12 +6145,7 @@ estimated.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">176</span>
-<span class="normal">177</span>
-<span class="normal">178</span>
-<span class="normal">179</span>
-<span class="normal">180</span>
-<span class="normal">181</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">181</span>
 <span class="normal">182</span>
 <span class="normal">183</span>
 <span class="normal">184</span>
@@ -6138,7 +6156,12 @@ estimated.</p>
 <span class="normal">189</span>
 <span class="normal">190</span>
 <span class="normal">191</span>
-<span class="normal">192</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">size_hint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">size_hint</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get an estimate of the number of elements in</span>
 <span class="sd">    this iterator or `None` if the value can not be</span>
@@ -6242,13 +6265,7 @@ are yielded.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">540</span>
-<span class="normal">541</span>
-<span class="normal">542</span>
-<span class="normal">543</span>
-<span class="normal">544</span>
-<span class="normal">545</span>
-<span class="normal">546</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">546</span>
 <span class="normal">547</span>
 <span class="normal">548</span>
 <span class="normal">549</span>
@@ -6264,7 +6281,13 @@ are yielded.</p>
 <span class="normal">559</span>
 <span class="normal">560</span>
 <span class="normal">561</span>
-<span class="normal">562</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">:</span>
+<span class="normal">562</span>
+<span class="normal">563</span>
+<span class="normal">564</span>
+<span class="normal">565</span>
+<span class="normal">566</span>
+<span class="normal">567</span>
+<span class="normal">568</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Skip the first `n` elements of this iterator.</span>
 <span class="sd">    After `n` elements have been skipped, all subsequent elements</span>
@@ -6369,20 +6392,14 @@ it will not be applied anymore and all subsequent items are yielded.</p>
 
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">week</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Thursday&quot;</span><span class="p">,</span> <span class="s2">&quot;Friday&quot;</span><span class="p">,</span> <span class="s2">&quot;Saturday, &quot;</span><span class="n">Sunday</span><span class="s2">&quot;]</span>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">week</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Thursday&quot;</span><span class="p">,</span> <span class="s2">&quot;Friday&quot;</span><span class="p">,</span> <span class="s2">&quot;Saturday&quot;</span><span class="p">,</span> <span class="s2">&quot;Sunday&quot;</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">(</span><span class="n">week</span><span class="p">)</span><span class="o">.</span><span class="n">skip_while</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">!=</span> <span class="s2">&quot;Saturday&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
 <span class="go">    [&quot;Saturday&quot;, &quot;Sunday&quot;]</span>
 </code></pre></div>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">465</span>
-<span class="normal">466</span>
-<span class="normal">467</span>
-<span class="normal">468</span>
-<span class="normal">469</span>
-<span class="normal">470</span>
-<span class="normal">471</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">471</span>
 <span class="normal">472</span>
 <span class="normal">473</span>
 <span class="normal">474</span>
@@ -6400,7 +6417,13 @@ it will not be applied anymore and all subsequent items are yielded.</p>
 <span class="normal">486</span>
 <span class="normal">487</span>
 <span class="normal">488</span>
-<span class="normal">489</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">skip_while</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">:</span>
+<span class="normal">489</span>
+<span class="normal">490</span>
+<span class="normal">491</span>
+<span class="normal">492</span>
+<span class="normal">493</span>
+<span class="normal">494</span>
+<span class="normal">495</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">skip_while</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Skip elements of this iterator by applying the given function to every</span>
 <span class="sd">    element while it returns `True`. After the function has returned `False`,</span>
@@ -6420,7 +6443,7 @@ it will not be applied anymore and all subsequent items are yielded.</p>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; week = [&quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday, &quot;Sunday&quot;]</span>
+<span class="sd">    &gt;&gt;&gt; week = [&quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday&quot;, &quot;Sunday&quot;]</span>
 <span class="sd">    &gt;&gt;&gt; iterator(week).skip_while(lambda x: x != &quot;Saturday&quot;).to_list()</span>
 <span class="sd">        [&quot;Saturday&quot;, &quot;Sunday&quot;]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -6515,13 +6538,7 @@ multiple of <code>size</code>.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">265</span>
-<span class="normal">266</span>
-<span class="normal">267</span>
-<span class="normal">268</span>
-<span class="normal">269</span>
-<span class="normal">270</span>
-<span class="normal">271</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">271</span>
 <span class="normal">272</span>
 <span class="normal">273</span>
 <span class="normal">274</span>
@@ -6541,7 +6558,13 @@ multiple of <code>size</code>.</p>
 <span class="normal">288</span>
 <span class="normal">289</span>
 <span class="normal">290</span>
-<span class="normal">291</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">step_by</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">:</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">step_by</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Steps over the iterator with steps of size `size`.</span>
 <span class="sd">    The first element of the iterator is always returned,</span>
@@ -6637,29 +6660,19 @@ multiple of <code>size</code>.</p>
         </tr>
     </tbody>
   </table>
-      <p>Example</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>iterator([8, 14, 22]).sum()
-    42
-iterator(["a", "b", "c"]).sum()
-    "abc"</p>
-</blockquote>
-</blockquote>
-</blockquote>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">22</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="go">    42</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="go">    &quot;abc&quot;</span>
+</code></pre></div>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1002</span>
-<span class="normal">1003</span>
-<span class="normal">1004</span>
-<span class="normal">1005</span>
-<span class="normal">1006</span>
-<span class="normal">1007</span>
-<span class="normal">1008</span>
-<span class="normal">1009</span>
-<span class="normal">1010</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1010</span>
 <span class="normal">1011</span>
 <span class="normal">1012</span>
 <span class="normal">1013</span>
@@ -6672,7 +6685,16 @@ iterator(["a", "b", "c"]).sum()
 <span class="normal">1020</span>
 <span class="normal">1021</span>
 <span class="normal">1022</span>
-<span class="normal">1023</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+<span class="normal">1023</span>
+<span class="normal">1024</span>
+<span class="normal">1025</span>
+<span class="normal">1026</span>
+<span class="normal">1027</span>
+<span class="normal">1028</span>
+<span class="normal">1029</span>
+<span class="normal">1030</span>
+<span class="normal">1031</span>
+<span class="normal">1032</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sum up all elements in this iterator</span>
 
@@ -6686,7 +6708,8 @@ iterator(["a", "b", "c"]).sum()
 <span class="sd">    EmptyIteratorError</span>
 <span class="sd">        If trying to sum an empty iterator</span>
 
-<span class="sd">    Example</span>
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; iterator([8, 14, 22]).sum()</span>
 <span class="sd">        42</span>
 <span class="sd">    &gt;&gt;&gt; iterator([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]).sum()</span>
@@ -6782,13 +6805,7 @@ will be exhausted.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">564</span>
-<span class="normal">565</span>
-<span class="normal">566</span>
-<span class="normal">567</span>
-<span class="normal">568</span>
-<span class="normal">569</span>
-<span class="normal">570</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">570</span>
 <span class="normal">571</span>
 <span class="normal">572</span>
 <span class="normal">573</span>
@@ -6804,7 +6821,13 @@ will be exhausted.</p>
 <span class="normal">583</span>
 <span class="normal">584</span>
 <span class="normal">585</span>
-<span class="normal">586</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">take</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">:</span>
+<span class="normal">586</span>
+<span class="normal">587</span>
+<span class="normal">588</span>
+<span class="normal">589</span>
+<span class="normal">590</span>
+<span class="normal">591</span>
+<span class="normal">592</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">take</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Only yield the first `n` items of the iterator.</span>
 <span class="sd">    After `n` elements have been yielded, the iterator</span>
@@ -6916,13 +6939,7 @@ further items.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">491</span>
-<span class="normal">492</span>
-<span class="normal">493</span>
-<span class="normal">494</span>
-<span class="normal">495</span>
-<span class="normal">496</span>
-<span class="normal">497</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">497</span>
 <span class="normal">498</span>
 <span class="normal">499</span>
 <span class="normal">500</span>
@@ -6939,7 +6956,13 @@ further items.</p>
 <span class="normal">511</span>
 <span class="normal">512</span>
 <span class="normal">513</span>
-<span class="normal">514</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">take_while</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">:</span>
+<span class="normal">514</span>
+<span class="normal">515</span>
+<span class="normal">516</span>
+<span class="normal">517</span>
+<span class="normal">518</span>
+<span class="normal">519</span>
+<span class="normal">520</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">take_while</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Apply a given function to every element of the iterator and only</span>
 <span class="sd">    yield elements while this function returns `True`. Once the function</span>
@@ -6984,7 +7007,7 @@ further items.</p>
   <div class="doc doc-contents ">
   
       <p>Collect this iterator into a list, completely consuming it.
-This is just a convinience method for <code>list()</code>.</p>
+This is just a convenience method for <code>list()</code>.</p>
 
 
 
@@ -7013,19 +7036,13 @@ This is just a convinience method for <code>list()</code>.</p>
 
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="s2">&quot;bucket&quot;</span><span class="p">,</span> <span class="s2">&quot;to-do&quot;</span><span class="p">,</span> <span class="s2">&quot;whish&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
-<span class="go">    [&quot;bucket&quot;, &quot;to-do&quot;, &quot;whish&quot;]</span>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="s2">&quot;bucket&quot;</span><span class="p">,</span> <span class="s2">&quot;to-do&quot;</span><span class="p">,</span> <span class="s2">&quot;wish&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [&quot;bucket&quot;, &quot;to-do&quot;, &quot;wish&quot;]</span>
 </code></pre></div>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">697</span>
-<span class="normal">698</span>
-<span class="normal">699</span>
-<span class="normal">700</span>
-<span class="normal">701</span>
-<span class="normal">702</span>
-<span class="normal">703</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">703</span>
 <span class="normal">704</span>
 <span class="normal">705</span>
 <span class="normal">706</span>
@@ -7034,10 +7051,16 @@ This is just a convinience method for <code>list()</code>.</p>
 <span class="normal">709</span>
 <span class="normal">710</span>
 <span class="normal">711</span>
-<span class="normal">712</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
+<span class="normal">712</span>
+<span class="normal">713</span>
+<span class="normal">714</span>
+<span class="normal">715</span>
+<span class="normal">716</span>
+<span class="normal">717</span>
+<span class="normal">718</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Collect this iterator into a list, completely consuming it.</span>
-<span class="sd">    This is just a convinience method for `list()`.</span>
+<span class="sd">    This is just a convenience method for `list()`.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -7046,8 +7069,8 @@ This is just a convinience method for <code>list()</code>.</p>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; iterator([&quot;bucket&quot;, &quot;to-do&quot;, &quot;whish&quot;]).to_list()</span>
-<span class="sd">        [&quot;bucket&quot;, &quot;to-do&quot;, &quot;whish&quot;]</span>
+<span class="sd">    &gt;&gt;&gt; iterator([&quot;bucket&quot;, &quot;to-do&quot;, &quot;wish&quot;]).to_list()</span>
+<span class="sd">        [&quot;bucket&quot;, &quot;to-do&quot;, &quot;wish&quot;]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -7070,7 +7093,7 @@ This is just a convinience method for <code>list()</code>.</p>
 
   <div class="doc doc-contents ">
   
-      <p>Unzip this iterator into two iterators, by building the first one from all first
+      <p>Unzip an iterator of tuples into two iterators, by building the first one from all first
 elements of each tuple, and the second from all second elements of the tuples.</p>
 
 
@@ -7109,15 +7132,7 @@ elements of each tuple, and the second from all second elements of the tuples.</
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">956</span>
-<span class="normal">957</span>
-<span class="normal">958</span>
-<span class="normal">959</span>
-<span class="normal">960</span>
-<span class="normal">961</span>
-<span class="normal">962</span>
-<span class="normal">963</span>
-<span class="normal">964</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">964</span>
 <span class="normal">965</span>
 <span class="normal">966</span>
 <span class="normal">967</span>
@@ -7126,9 +7141,17 @@ elements of each tuple, and the second from all second elements of the tuples.</
 <span class="normal">970</span>
 <span class="normal">971</span>
 <span class="normal">972</span>
-<span class="normal">973</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">unzip</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="s2">&quot;FluentIterator[Tuple[T, U]]&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">,</span> <span class="s2">&quot;FluentIterator[U]&quot;</span><span class="p">]:</span>
+<span class="normal">973</span>
+<span class="normal">974</span>
+<span class="normal">975</span>
+<span class="normal">976</span>
+<span class="normal">977</span>
+<span class="normal">978</span>
+<span class="normal">979</span>
+<span class="normal">980</span>
+<span class="normal">981</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">unzip</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="s2">&quot;FluentIterator[Tuple[T, U]]&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="s2">&quot;FluentIterator[T]&quot;</span><span class="p">,</span> <span class="s2">&quot;FluentIterator[U]&quot;</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Unzip this iterator into two iterators, by building the first one from all first</span>
+<span class="sd">    Unzip an iterator of tuples into two iterators, by building the first one from all first</span>
 <span class="sd">    elements of each tuple, and the second from all second elements of the tuples.</span>
 
 <span class="sd">    Returns</span>
@@ -7232,13 +7255,7 @@ second element is an element of <code>other</code>.</p>
 
           <details class="quote">
             <summary>Source code in <code>fluentiter/fluentiterator.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">316</span>
-<span class="normal">317</span>
-<span class="normal">318</span>
-<span class="normal">319</span>
-<span class="normal">320</span>
-<span class="normal">321</span>
-<span class="normal">322</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">322</span>
 <span class="normal">323</span>
 <span class="normal">324</span>
 <span class="normal">325</span>
@@ -7255,7 +7272,13 @@ second element is an element of <code>other</code>.</p>
 <span class="normal">336</span>
 <span class="normal">337</span>
 <span class="normal">338</span>
-<span class="normal">339</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">zip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">U</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[Tuple[T, U]]&quot;</span><span class="p">:</span>
+<span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">zip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">U</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">&quot;FluentIterator[Tuple[T, U]]&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Zip this iterator with another iterable, yielding 2-element tuples</span>
 <span class="sd">    where the first element is an element from this iterator and the</span>
