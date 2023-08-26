@@ -1894,7 +1894,7 @@
 <span class="sd">        The index starts at `0`, i.e. `nth(0)` returns the first element.</span>
 <span class="sd">        If the index is greater than or equal to the lenght of the iterator, this will return None.</span>
 
-<span class="sd">        NOTE: This method consumes the iterator up to and including `index`.</span>
+<span class="sd">        **NOTE:** This method consumes the iterator up to and including `index`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2086,7 +2086,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the next element of the iterator, **without** advancing it.</span>
 
-<span class="sd">        NOTE: Calling peek multiple times consecutively always returns</span>
+<span class="sd">        **NOTE:** Calling peek multiple times consecutively always returns</span>
 <span class="sd">        the same element</span>
 
 <span class="sd">        Returns</span>
@@ -2243,7 +2243,7 @@
 <span class="sd">        using that state to every element, returning a tuple of the new state</span>
 <span class="sd">        and a mapped element. The new state may then be used by the next iteration.</span>
 
-<span class="sd">        NOTE: To end the iteration, the function should raise `StopIteration`.</span>
+<span class="sd">        **NOTE:** To end the iteration, the function should raise `StopIteration`.</span>
 
 <span class="sd">        For the curious: The state is returned instead of mutated directly,</span>
 <span class="sd">        as many elements in Python (e.g. integers) are immutable and need to be reassigned.</span>
@@ -2321,7 +2321,7 @@
 <span class="sd">        This is useful if the function has some side effect like logging</span>
 <span class="sd">        or printing.</span>
 
-<span class="sd">        NOTE: If the elements are mutable, `func` can still mutate them.</span>
+<span class="sd">        **NOTE:** If the elements are mutable, `func` can still mutate them.</span>
 <span class="sd">        Keep this in mind.</span>
 
 <span class="sd">        Parameters</span>
@@ -2401,8 +2401,8 @@
 
 <span class="sd">        For an empty iterator this returns the initial value.</span>
 
-<span class="sd">        NOTE: To return the elements instead of the accumulator, use `.scan`.</span>
-<span class="sd">        NOTE: To use the first element as `initial_value`, use `.reduce`.</span>
+<span class="sd">        **NOTE:** To return the elements instead of the accumulator, use `.scan`.</span>
+<span class="sd">        **NOTE:** To use the first element as `initial_value`, use `.reduce`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2432,8 +2432,8 @@
 <span class="sd">        and the element of this iteration. For the first iteration this will be the</span>
 <span class="sd">        first and second element of this iterator resepctively.</span>
 
-<span class="sd">        NOTE: To return the elements instead of the reduction, use `.scan`.</span>
-<span class="sd">        NOTE: To specify the an `initial_value`, use `.fold`.</span>
+<span class="sd">        **NOTE:** To return the elements instead of the reduction, use `.scan`.</span>
+<span class="sd">        **NOTE:** To specify the an `initial_value`, use `.fold`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2627,7 +2627,7 @@
 <span class="sd">        Make an infinite iterator by repeating the values from this one forever.</span>
 <span class="sd">        It just goes round and round....</span>
 
-<span class="sd">        NOTE: Do not try to collect an infinite iterator</span>
+<span class="sd">        **NOTE:** Do not try to collect an infinite iterator</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -3101,7 +3101,7 @@ This will consume the iterator.</p>
   
       <p>Make an infinite iterator by repeating the values from this one forever.
 It just goes round and round....</p>
-<p>NOTE: Do not try to collect an infinite iterator</p>
+<p><strong>NOTE:</strong> Do not try to collect an infinite iterator</p>
 
 
 
@@ -3171,7 +3171,7 @@ It just goes round and round....</p>
 <span class="sd">    Make an infinite iterator by repeating the values from this one forever.</span>
 <span class="sd">    It just goes round and round....</span>
 
-<span class="sd">    NOTE: Do not try to collect an infinite iterator</span>
+<span class="sd">    **NOTE:** Do not try to collect an infinite iterator</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -3971,8 +3971,8 @@ The given function must takes two parameters, an accumulator <code>A</code>
 and an element of the iterator <code>T</code> and return the new accumulator <code>A</code> to be used
 on the next iteration.</p>
 <p>For an empty iterator this returns the initial value.</p>
-<p>NOTE: To return the elements instead of the accumulator, use <code>.scan</code>.
-NOTE: To use the first element as <code>initial_value</code>, use <code>.reduce</code>.</p>
+<p><strong>NOTE:</strong> To return the elements instead of the accumulator, use <code>.scan</code>.
+<strong>NOTE:</strong> To use the first element as <code>initial_value</code>, use <code>.reduce</code>.</p>
 
 
 
@@ -4092,8 +4092,8 @@ NOTE: To use the first element as <code>initial_value</code>, use <code>.reduce<
 
 <span class="sd">    For an empty iterator this returns the initial value.</span>
 
-<span class="sd">    NOTE: To return the elements instead of the accumulator, use `.scan`.</span>
-<span class="sd">    NOTE: To use the first element as `initial_value`, use `.reduce`.</span>
+<span class="sd">    **NOTE:** To return the elements instead of the accumulator, use `.scan`.</span>
+<span class="sd">    **NOTE:** To use the first element as `initial_value`, use `.reduce`.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -4138,7 +4138,7 @@ NOTE: To use the first element as <code>initial_value</code>, use <code>.reduce<
 still yields the original elements.
 This is useful if the function has some side effect like logging
 or printing.</p>
-<p>NOTE: If the elements are mutable, <code>func</code> can still mutate them.
+<p><strong>NOTE:</strong> If the elements are mutable, <code>func</code> can still mutate them.
 Keep this in mind.</p>
 
 
@@ -4243,7 +4243,7 @@ Keep this in mind.</p>
 <span class="sd">    This is useful if the function has some side effect like logging</span>
 <span class="sd">    or printing.</span>
 
-<span class="sd">    NOTE: If the elements are mutable, `func` can still mutate them.</span>
+<span class="sd">    **NOTE:** If the elements are mutable, `func` can still mutate them.</span>
 <span class="sd">    Keep this in mind.</span>
 
 <span class="sd">    Parameters</span>
@@ -5074,7 +5074,7 @@ be compared instead of the elements themselves.</p>
       <p>Returns the nth element of the iterator.
 The index starts at <code>0</code>, i.e. <code>nth(0)</code> returns the first element.
 If the index is greater than or equal to the lenght of the iterator, this will return None.</p>
-<p>NOTE: This method consumes the iterator up to and including <code>index</code>.</p>
+<p><strong>NOTE:</strong> This method consumes the iterator up to and including <code>index</code>.</p>
 
 
 
@@ -5161,7 +5161,7 @@ If the index is greater than or equal to the lenght of the iterator, this will r
 <span class="sd">    The index starts at `0`, i.e. `nth(0)` returns the first element.</span>
 <span class="sd">    If the index is greater than or equal to the lenght of the iterator, this will return None.</span>
 
-<span class="sd">    NOTE: This method consumes the iterator up to and including `index`.</span>
+<span class="sd">    **NOTE:** This method consumes the iterator up to and including `index`.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -5344,7 +5344,7 @@ of the second iterator</p>
   <div class="doc doc-contents ">
   
       <p>Return the next element of the iterator, <strong>without</strong> advancing it.</p>
-<p>NOTE: Calling peek multiple times consecutively always returns
+<p><strong>NOTE:</strong> Calling peek multiple times consecutively always returns
 the same element</p>
 
 
@@ -5442,7 +5442,7 @@ the same element</p>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return the next element of the iterator, **without** advancing it.</span>
 
-<span class="sd">    NOTE: Calling peek multiple times consecutively always returns</span>
+<span class="sd">    **NOTE:** Calling peek multiple times consecutively always returns</span>
 <span class="sd">    the same element</span>
 
 <span class="sd">    Returns</span>
@@ -5742,8 +5742,8 @@ behaviour aligns with Pythons <code>str.find</code>.</p>
 <p>The given function must take two parameters, the returned of the previous iteration
 and the element of this iteration. For the first iteration this will be the
 first and second element of this iterator resepctively.</p>
-<p>NOTE: To return the elements instead of the reduction, use <code>.scan</code>.
-NOTE: To specify the an <code>initial_value</code>, use <code>.fold</code>.</p>
+<p><strong>NOTE:</strong> To return the elements instead of the reduction, use <code>.scan</code>.
+<strong>NOTE:</strong> To specify the an <code>initial_value</code>, use <code>.fold</code>.</p>
 
 
 
@@ -5874,8 +5874,8 @@ NOTE: To specify the an <code>initial_value</code>, use <code>.fold</code>.</p>
 <span class="sd">    and the element of this iteration. For the first iteration this will be the</span>
 <span class="sd">    first and second element of this iterator resepctively.</span>
 
-<span class="sd">    NOTE: To return the elements instead of the reduction, use `.scan`.</span>
-<span class="sd">    NOTE: To specify the an `initial_value`, use `.fold`.</span>
+<span class="sd">    **NOTE:** To return the elements instead of the reduction, use `.scan`.</span>
+<span class="sd">    **NOTE:** To specify the an `initial_value`, use `.fold`.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -5924,7 +5924,7 @@ NOTE: To specify the an <code>initial_value</code>, use <code>.fold</code>.</p>
       <p>Create an iterator which holds some internal state and applies some function
 using that state to every element, returning a tuple of the new state
 and a mapped element. The new state may then be used by the next iteration.</p>
-<p>NOTE: To end the iteration, the function should raise <code>StopIteration</code>.</p>
+<p><strong>NOTE:</strong> To end the iteration, the function should raise <code>StopIteration</code>.</p>
 <p>For the curious: The state is returned instead of mutated directly,
 as many elements in Python (e.g. integers) are immutable and need to be reassigned.</p>
 
@@ -6042,7 +6042,7 @@ as many elements in Python (e.g. integers) are immutable and need to be reassign
 <span class="sd">    using that state to every element, returning a tuple of the new state</span>
 <span class="sd">    and a mapped element. The new state may then be used by the next iteration.</span>
 
-<span class="sd">    NOTE: To end the iteration, the function should raise `StopIteration`.</span>
+<span class="sd">    **NOTE:** To end the iteration, the function should raise `StopIteration`.</span>
 
 <span class="sd">    For the curious: The state is returned instead of mutated directly,</span>
 <span class="sd">    as many elements in Python (e.g. integers) are immutable and need to be reassigned.</span>
