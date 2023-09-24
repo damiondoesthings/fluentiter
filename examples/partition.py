@@ -1,5 +1,5 @@
 """
-How to use fluentiter's `partition`function
+How to use fluentiter's `partition` function
 """
 from fluentiter import iterator
 
