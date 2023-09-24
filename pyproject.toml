@@ -5,6 +5,8 @@ description = "Nice and clean iterator patterns for python"
 authors = ["Damion Werner <damion.werner@gmail.com>"]
 readme = "README.md"
 packages = [{ include = "fluentiter" }]
+repository = "https://github.com/damiondoesthings/fluentiter"
+documentation = "https://damiondoesthings.github.io/fluentiter/"
 
 [tool.poetry.dependencies]
 python = "^3.8"
