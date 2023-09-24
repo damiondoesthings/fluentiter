@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fluentiter"
-version = "1.0.0"
+version = "1.0.1"
 description = "Nice and clean iterator patterns for python"
 authors = ["Damion Werner <damion.werner@gmail.com>"]
 readme = "README.md"
