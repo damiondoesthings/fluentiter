@@ -15,6 +15,7 @@ permissions:
 
 jobs:
   pypi-publish:
+    environment: release
     permissions:
       id-token: write
     runs-on: ubuntu-latest
