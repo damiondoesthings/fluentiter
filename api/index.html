@@ -1,0 +1,4196 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.1">
+    
+    
+      
+        <title>FluentIterator API - FluentIter Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.72749a73.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fluentiterator-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="FluentIter Documentation" class="md-header__button md-logo" aria-label="FluentIter Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FluentIter Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              FluentIterator API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="FluentIter Documentation" class="md-nav__button md-logo" aria-label="FluentIter Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    FluentIter Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    FluentIterator API
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    FluentIterator API
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator" class="md-nav__link">
+    FluentIterator
+  </a>
+  
+    <nav class="md-nav" aria-label="FluentIterator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.any" class="md-nav__link">
+    any()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.chain" class="md-nav__link">
+    chain()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.count" class="md-nav__link">
+    count()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.cycle" class="md-nav__link">
+    cycle()
+  </a>
+  
+    <nav class="md-nav" aria-label="cycle()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.cycle--notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.enumerate" class="md-nav__link">
+    enumerate()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.filter" class="md-nav__link">
+    filter()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.filter_map" class="md-nav__link">
+    filter_map()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.find" class="md-nav__link">
+    find()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.flat_map" class="md-nav__link">
+    flat_map()
+  </a>
+  
+    <nav class="md-nav" aria-label="flat_map()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.flat_map--notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.flatten" class="md-nav__link">
+    flatten()
+  </a>
+  
+    <nav class="md-nav" aria-label="flatten()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.flatten--notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.fold" class="md-nav__link">
+    fold()
+  </a>
+  
+    <nav class="md-nav" aria-label="fold()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.fold--notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.inspect" class="md-nav__link">
+    inspect()
+  </a>
+  
+    <nav class="md-nav" aria-label="inspect()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.inspect--notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.last" class="md-nav__link">
+    last()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.map" class="md-nav__link">
+    map()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.map_while" class="md-nav__link">
+    map_while()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.max" class="md-nav__link">
+    max()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.min" class="md-nav__link">
+    min()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.next" class="md-nav__link">
+    next()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.nth" class="md-nav__link">
+    nth()
+  </a>
+  
+    <nav class="md-nav" aria-label="nth()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.nth--notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.partition" class="md-nav__link">
+    partition()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.peek" class="md-nav__link">
+    peek()
+  </a>
+  
+    <nav class="md-nav" aria-label="peek()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.peek--notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.position" class="md-nav__link">
+    position()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.product" class="md-nav__link">
+    product()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.reduce" class="md-nav__link">
+    reduce()
+  </a>
+  
+    <nav class="md-nav" aria-label="reduce()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.reduce--notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.rolling_window" class="md-nav__link">
+    rolling_window()
+  </a>
+  
+    <nav class="md-nav" aria-label="rolling_window()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.rolling_window--notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.scan" class="md-nav__link">
+    scan()
+  </a>
+  
+    <nav class="md-nav" aria-label="scan()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.scan--notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.size_hint" class="md-nav__link">
+    size_hint()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.skip" class="md-nav__link">
+    skip()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.skip_while" class="md-nav__link">
+    skip_while()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.step_by" class="md-nav__link">
+    step_by()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.sum" class="md-nav__link">
+    sum()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.take" class="md-nav__link">
+    take()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.take_while" class="md-nav__link">
+    take_while()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.to_list" class="md-nav__link">
+    to_list()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.unzip" class="md-nav__link">
+    unzip()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.zip" class="md-nav__link">
+    zip()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator" class="md-nav__link">
+    FluentIterator
+  </a>
+  
+    <nav class="md-nav" aria-label="FluentIterator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.any" class="md-nav__link">
+    any()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.chain" class="md-nav__link">
+    chain()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.count" class="md-nav__link">
+    count()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.cycle" class="md-nav__link">
+    cycle()
+  </a>
+  
+    <nav class="md-nav" aria-label="cycle()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.cycle--notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.enumerate" class="md-nav__link">
+    enumerate()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.filter" class="md-nav__link">
+    filter()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.filter_map" class="md-nav__link">
+    filter_map()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.find" class="md-nav__link">
+    find()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.flat_map" class="md-nav__link">
+    flat_map()
+  </a>
+  
+    <nav class="md-nav" aria-label="flat_map()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.flat_map--notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.flatten" class="md-nav__link">
+    flatten()
+  </a>
+  
+    <nav class="md-nav" aria-label="flatten()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.flatten--notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.fold" class="md-nav__link">
+    fold()
+  </a>
+  
+    <nav class="md-nav" aria-label="fold()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.fold--notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.inspect" class="md-nav__link">
+    inspect()
+  </a>
+  
+    <nav class="md-nav" aria-label="inspect()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.inspect--notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.last" class="md-nav__link">
+    last()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.map" class="md-nav__link">
+    map()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.map_while" class="md-nav__link">
+    map_while()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.max" class="md-nav__link">
+    max()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.min" class="md-nav__link">
+    min()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.next" class="md-nav__link">
+    next()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.nth" class="md-nav__link">
+    nth()
+  </a>
+  
+    <nav class="md-nav" aria-label="nth()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.nth--notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.partition" class="md-nav__link">
+    partition()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.peek" class="md-nav__link">
+    peek()
+  </a>
+  
+    <nav class="md-nav" aria-label="peek()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.peek--notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.position" class="md-nav__link">
+    position()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.product" class="md-nav__link">
+    product()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.reduce" class="md-nav__link">
+    reduce()
+  </a>
+  
+    <nav class="md-nav" aria-label="reduce()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.reduce--notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.rolling_window" class="md-nav__link">
+    rolling_window()
+  </a>
+  
+    <nav class="md-nav" aria-label="rolling_window()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.rolling_window--notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.scan" class="md-nav__link">
+    scan()
+  </a>
+  
+    <nav class="md-nav" aria-label="scan()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.scan--notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.size_hint" class="md-nav__link">
+    size_hint()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.skip" class="md-nav__link">
+    skip()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.skip_while" class="md-nav__link">
+    skip_while()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.step_by" class="md-nav__link">
+    step_by()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.sum" class="md-nav__link">
+    sum()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.take" class="md-nav__link">
+    take()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.take_while" class="md-nav__link">
+    take_while()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.to_list" class="md-nav__link">
+    to_list()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.unzip" class="md-nav__link">
+    unzip()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.zip" class="md-nav__link">
+    zip()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="fluentiterator-api">FluentIterator API</h1>
+<p>Use the <code>iterator</code> function to create a <code>FluentIterator</code>:</p>
+<pre><code class="language-python">from fluentiter import iterator
+
+my_iter = iterator([&quot;ice&quot;, &quot;ice&quot;, &quot;baby&quot;])
+</code></pre>
+<p>See below for all the things you can do then.</p>
+<hr />
+
+
+<div class="doc doc-object doc-class">
+
+
+
+
+<h2 id="fluentiter.core.FluentIterator" class="doc doc-heading">
+          <code>FluentIterator</code>
+
+
+</h2>
+
+
+  <div class="doc doc-contents first">
+          <p class="doc doc-class-bases">
+            Bases: <code><span title="typing.Generic">Generic</span>[<span title="fluentiter.core.T">T</span>]</code>, <code><span title="typing.Iterator">Iterator</span>[<span title="fluentiter.core.T">T</span>]</code></p>
+
+  
+      <p>Easy to use container for iterables</p>
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.any" class="doc doc-heading">
+          <code class="highlight language-python"><span class="nb">any</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return <code>True</code> if the given function returns <code>True</code> for any element
+of this iterator, otherwise return <code>False</code>.</p>
+<p>For an empty iterator this is always <code>False</code>.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>func</code></td>
+          <td>
+                <code><span title="typing.Callable">Callable</span>[[<span title="fluentiter.core.T">T</span>], bool]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Function to evaluate elements, by default bool</p>
+            </div>
+          </td>
+          <td>
+                <code>bool</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>bool</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Whether any element of this iterator matches the predicate</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">is_digit</span><span class="p">())</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([])</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
+<span class="go">False</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.chain" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">chain</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Chain another iterable to the end of this iterator.
+The returned iterator will first yield all items of <code>self</code> and then
+yield all items of <code>other</code>.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>other</code></td>
+          <td>
+                <code><span title="typing.Iterable">Iterable</span>[<span title="fluentiter.core.U">U</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Iterable to chain to this one.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="fluentiter.core.FluentIterator" href="#fluentiter.core.FluentIterator">FluentIterator</a>[<span title="typing.Union">Union</span>[<span title="fluentiter.core.T">T</span>, <span title="fluentiter.core.U">U</span>]]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Chained iterator</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="s2">&quot;We&quot;</span><span class="p">,</span> <span class="s2">&quot;didn&#39;t&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">chain</span><span class="p">([</span><span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;the&quot;</span><span class="p">,</span> <span class="s2">&quot;fire&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [&quot;We&quot;, &quot;didn&#39;t&quot;, &quot;start&quot;, &quot;the&quot;, &quot;fire&quot;]</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.count" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">count</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Count the elements in this iterator.
+This will consume the iterator.</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Count of items</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="go">    5</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.cycle" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">cycle</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Make an infinite iterator by repeating the values from this one forever.
+It just goes round and round....</p>
+<h5 id="fluentiter.core.FluentIterator.cycle--notes">Notes</h5>
+<p>Do not try to collect an infinite iterator</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="fluentiter.itertypes.CycleIterator">CycleIterator</span>[<span title="fluentiter.core.T">T</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Infite cycling iterator</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">never_ends</span> <span class="o">=</span> <span class="n">iterator</span><span class="p">(</span><span class="s2">&quot;carousel&quot;</span><span class="p">,</span> <span class="s2">&quot;wheels on the bus&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cycle</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">never_ends</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="go">    &quot;carousel&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">never_ends</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="go">    &quot;wheels on the bus&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">never_ends</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="go">    &quot;carousel&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">never_ends</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="go">    &quot;wheels on the bus&quot;</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.enumerate" class="doc doc-heading">
+          <code class="highlight language-python"><span class="nb">enumerate</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Create an iterator which yields tuples of <code>(index, value)</code>.</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="fluentiter.core.FluentIterator" href="#fluentiter.core.FluentIterator">FluentIterator</a>[<span title="typing.Tuple">Tuple</span>[int, <span title="fluentiter.core.T">T</span>]]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Iterator of index, value tuples</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="s2">&quot;zero&quot;</span><span class="p">,</span> <span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">enumerate</span><span class="p">()</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [(0, &quot;zero&quot;), (1, &quot;one&quot;), (2, &quot;two&quot;)]</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.filter" class="doc doc-heading">
+          <code class="highlight language-python"><span class="nb">filter</span><span class="p">(</span><span class="n">func</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Create a filtered iterator by applying a function to every element
+to evaluate whether or not it should be yielded.</p>
+<p>If the given function returns <code>True</code> the item will be yielded.
+If the function returns <code>False</code> the iterator will skip the item.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>func</code></td>
+          <td>
+                <code><span title="typing.Callable">Callable</span>[[<span title="fluentiter.core.T">T</span>], bool]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Function to apply as a filter.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="fluentiter.core.FluentIterator" href="#fluentiter.core.FluentIterator">FluentIterator</a>[<span title="fluentiter.core.T">T</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Filtered iterator</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">is_integer</span><span class="p">())</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [1.0, 2.0]</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.filter_map" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">filter_map</span><span class="p">(</span><span class="n">func</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>A combination of <code>.map</code> and <code>.filter</code>. Apply a given function to every
+element of the iterator and return the result only if it is not <code>None</code>.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>func</code></td>
+          <td>
+                <code><span title="typing.Callable">Callable</span>[[<span title="fluentiter.core.T">T</span>], <span title="typing.Optional">Optional</span>[<span title="fluentiter.core.R">R</span>]]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Function to apply, returns <code>None</code> for elements to be filtered out.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="fluentiter.core.FluentIterator" href="#fluentiter.core.FluentIterator">FluentIterator</a>[<span title="fluentiter.core.R">R</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Iterator of mapped values.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">iterator</span><span class="p">([{</span><span class="s2">&quot;food&quot;</span><span class="p">:</span> <span class="s2">&quot;cake&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;beverage&quot;</span><span class="p">:</span> <span class="s2">&quot;coffee&quot;</span><span class="p">}])</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="o">.</span><span class="n">filter_map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;food&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+<span class="go">    [&quot;cake&quot;]</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.find" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">find</span><span class="p">(</span><span class="n">func</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Find and return the first element for which the given function
+returns <code>True</code>.</p>
+<p>If no element matches or the iterator is empty, this raises
+<code>NotFoundError</code>.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>func</code></td>
+          <td>
+                <code><span title="typing.Callable">Callable</span>[[<span title="fluentiter.core.T">T</span>], bool]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Function to test elements</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="fluentiter.core.T">T</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>First element which matches the predicate</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>NotFoundError</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If no element matches</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="s2">&quot;bert&quot;</span><span class="p">,</span> <span class="s2">&quot;waldo&quot;</span><span class="p">,</span> <span class="s2">&quot;ernie&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;w&quot;</span><span class="p">))</span>
+<span class="go">    &quot;waldo&quot;</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.flat_map" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">flat_map</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">))</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Create an iterator which maps a function <code>func</code> across all elements,
+but also flattens the results if they are iterables.</p>
+<h5 id="fluentiter.core.FluentIterator.flat_map--notes">Notes</h5>
+<p>By default <code>str</code> and <code>bytes</code> will not be flattened. You can control this via the
+<code>exclude</code> parameter</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>func</code></td>
+          <td>
+                <code><span title="typing.Callable">Callable</span>[[<span title="fluentiter.core.T">T</span>], <span title="typing.Union">Union</span>[<span title="fluentiter.core.R">R</span>, <span title="typing.Iterable">Iterable</span>[<span title="fluentiter.core.R">R</span>]]]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Function to apply to all elements</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>exclude</code></td>
+          <td>
+                <code><span title="typing.Tuple">Tuple</span>[<span title="typing.Type">Type</span>, ...]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Types which shall not be flattened, by default (str, bytes)</p>
+            </div>
+          </td>
+          <td>
+                <code>(str, bytes)</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="fluentiter.core.FluentIterator" href="#fluentiter.core.FluentIterator">FluentIterator</a>[<span title="fluentiter.core.R">R</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Iterator of flattened results</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">dolphins</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;So long&quot;</span><span class="p">,</span> <span class="s2">&quot;and thanks&quot;</span><span class="p">,</span> <span class="s2">&quot;for all the fish&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">(</span><span class="n">dolphins</span><span class="p">)</span><span class="o">.</span><span class="n">flat_map</span><span class="p">(</span><span class="n">lamba</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">())</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [&quot;So&quot;, &quot;long&quot;, &quot;and&quot;, &quot;thanks&quot;, &quot;for&quot;, &quot;all&quot;, &quot;the&quot;, &quot;fish&quot;]</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.flatten" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">flatten</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">))</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Make an iterator which which flattens all elements of this
+iterator.</p>
+<h5 id="fluentiter.core.FluentIterator.flatten--notes">Notes</h5>
+<p>By default <code>str</code> and <code>bytes</code> will not be flattened. You can control this via the
+<code>exclude</code> parameter</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>exclude</code></td>
+          <td>
+                <code><span title="typing.Tuple">Tuple</span>[<span title="typing.Type">Type</span>, ...]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Types which shall not be flattened, by default (str, bytes)</p>
+            </div>
+          </td>
+          <td>
+                <code>(str, bytes)</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="fluentiter.core.FluentIterator" href="#fluentiter.core.FluentIterator">FluentIterator</a>[<span title="fluentiter.core.T">T</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Iterator of flattened elements</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([(</span><span class="s2">&quot;tire&quot;</span><span class="p">,</span> <span class="s2">&quot;earth&quot;</span><span class="p">),</span> <span class="p">[</span><span class="s2">&quot;screen&quot;</span><span class="p">]])</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [&quot;tire&quot;, &quot;earth&quot;, &quot;screen&quot;]</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.fold" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">fold</span><span class="p">(</span><span class="n">initial_value</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Fold every element of this iterator into a single value by repeatedly
+applying <code>func</code>.
+The given function must takes two parameters, an accumulator <code>A</code>
+and an element of the iterator <code>T</code> and return the new accumulator <code>A</code> to be used
+on the next iteration.</p>
+<p>For an empty iterator this returns the initial value.</p>
+<h5 id="fluentiter.core.FluentIterator.fold--notes">Notes</h5>
+<ul>
+<li>To return the elements instead of the accumulator, use <code>.scan</code>.</li>
+<li>To use the first element as <code>initial_value</code>, use <code>.reduce</code>.</li>
+</ul>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>initial_value</code></td>
+          <td>
+                <code><span title="fluentiter.core.FluentIterator.A">A</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Initial value of the accumulator</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>func</code></td>
+          <td>
+                <code><span title="typing.Callable">Callable</span>[[<span title="fluentiter.core.FluentIterator.S">S</span>, <span title="fluentiter.core.T">T</span>], <span title="fluentiter.core.FluentIterator.A">A</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Folding function</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="fluentiter.core.FluentIterator.A">A</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Folded value</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="s2">&quot;hot&quot;</span><span class="p">,</span> <span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;bun&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">fold</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">a</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="go">    10</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.inspect" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">inspect</span><span class="p">(</span><span class="n">func</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return an iterator which applies <code>func</code> to every element, but
+still yields the original elements.
+This is useful if the function has some side effect like logging
+or printing.</p>
+<h5 id="fluentiter.core.FluentIterator.inspect--notes">Notes</h5>
+<p>If the elements are mutable, <code>func</code> can still mutate them.
+Keep this in mind.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>func</code></td>
+          <td>
+                <code><span title="typing.Callable">Callable</span>[[<span title="fluentiter.core.T">T</span>], <span title="typing.Any">Any</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Function to apply to every element.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="fluentiter.core.FluentIterator" href="#fluentiter.core.FluentIterator">FluentIterator</a>[<span title="fluentiter.core.T">T</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Iterator of the original elements.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">lengths</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="s2">&quot;hot&quot;</span><span class="p">,</span> <span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;bun&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">inspect</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">lengths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [&quot;hot&quot;, &quot;dog&quot;, &quot;bun&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lengths</span>
+<span class="go">    [3, 3, 3]</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.last" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">last</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return the last element in this iterator.
+If the iterator does not contain any elements,
+this returns None.</p>
+<p>This consumes the iterator.</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[<span title="fluentiter.core.T">T</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Last element or None</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>EmptyIteratorError</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If the iterator has no elements</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;baz&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">last</span><span class="p">()</span>
+<span class="go">    &quot;baz&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([])</span><span class="o">.</span><span class="n">last</span><span class="p">()</span>
+<span class="go">    None</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.map" class="doc doc-heading">
+          <code class="highlight language-python"><span class="nb">map</span><span class="p">(</span><span class="n">func</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Apply a given function <code>func</code> to every element of the iterator,
+and return an iterator yielding the results of those function calls.</p>
+<p>Keep in mind, the function is not applied immediatly
+but as items are yielded from the iterator.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>func</code></td>
+          <td>
+                <code><span title="typing.Callable">Callable</span>[[<span title="fluentiter.core.T">T</span>], <span title="fluentiter.core.R">R</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Function to apply to every element.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="fluentiter.core.FluentIterator" href="#fluentiter.core.FluentIterator">FluentIterator</a>[<span title="fluentiter.core.R">R</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Iterator yielding the function call results</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="s2">&quot;don&#39;t&quot;</span><span class="p">,</span> <span class="s2">&quot;panic&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [&quot;DON&#39;T&quot;, &quot;PANIC&quot;]</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.map_while" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">map_while</span><span class="p">(</span><span class="n">func</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>A combination of <code>map</code> and <code>take_while</code>. Applies the given function to
+all elements of the iterator and yields the results. Once the function returns
+<code>None</code> the iterator will be exhausted and not yield any further items.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>func</code></td>
+          <td>
+                <code><span title="typing.Callable">Callable</span>[[<span title="fluentiter.core.T">T</span>], <span title="typing.Union">Union</span>[<span title="fluentiter.core.R">R</span>, None]]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Function to apply to every element</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="fluentiter.core.FluentIterator" href="#fluentiter.core.FluentIterator">FluentIterator</a>[<span title="fluentiter.core.R">R</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Iterator which yields mapped elements until <code>func</code> returns <code>None</code></p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">me</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;napping&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;eating&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;napping&quot;</span><span class="p">}]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">(</span><span class="n">me</span><span class="p">)</span><span class="o">.</span><span class="n">map_while</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [&quot;napping&quot;, &quot;eating&quot;]</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.max" class="doc doc-heading">
+          <code class="highlight language-python"><span class="nb">max</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return the maximum element in this iterator.</p>
+<p>If a key is given, the results of <code>key(element)</code> will
+be compared instead of the elements themselves.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>key</code></td>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.Callable">Callable</span>[<span title="fluentiter.core.T">T</span>], <span title="typing.Any">Any</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Key to use for comparison, by default None</p>
+            </div>
+          </td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="fluentiter.core.T">T</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Maximum value</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>EmptyIteratorError</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If the iterator is empty</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="mi">42</span><span class="p">,</span> <span class="mi">1337</span><span class="p">])</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="go">    1337</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.min" class="doc doc-heading">
+          <code class="highlight language-python"><span class="nb">min</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return the minimum element in this iterator.</p>
+<p>If a key is given, the results of <code>key(element)</code> will
+be compared instead of the elements themselves.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>key</code></td>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.Callable">Callable</span>[<span title="fluentiter.core.T">T</span>], <span title="typing.Any">Any</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Key to use for comparison, by default None</p>
+            </div>
+          </td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="fluentiter.core.T">T</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Minimum value</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>EmptyIteratorError</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If the iterator is empty</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="mi">42</span><span class="p">,</span> <span class="mi">1337</span><span class="p">])</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="go">    42</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.next" class="doc doc-heading">
+          <code class="highlight language-python"><span class="nb">next</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Advances the iterator and returns the next value.</p>
+<p>Will return <code>None</code> the iterator is exhausted</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[<span title="fluentiter.core.T">T</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Next element or None if iterator is exhausted</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>StopIteration</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If there is no next element</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.nth" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">nth</span><span class="p">(</span><span class="n">index</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns the nth element of the iterator.
+The index starts at <code>0</code>, i.e. <code>nth(0)</code> returns the first element.
+If the index is greater than or equal to the length of the iterator, this will return None.</p>
+<h5 id="fluentiter.core.FluentIterator.nth--notes">Notes</h5>
+<p>This method consumes the iterator up to and including <code>index</code>.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>index</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The index to return</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>IndexError</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If the iterator has less than <code>index + 1</code> items</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[<span title="fluentiter.core.T">T</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Value at the index or <code>None</code> if index is &gt;= iterator length</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;t&quot;</span><span class="p">,</span> <span class="s2">&quot;h&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">nth</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">    &quot;t&quot;</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.partition" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">partition</span><span class="p">(</span><span class="n">func</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Create two iterators from this one, by applying <code>func</code> to every element.
+All elements for which <code>func(element) == False</code> will become part of the
+first iterator, all those for which it returns <code>True</code> wil become part
+of the second iterator</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>func</code></td>
+          <td>
+                <code><span title="typing.Callable">Callable</span>[[<span title="fluentiter.core.T">T</span>], bool]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Function to apply to sort elements into partitions</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="typing.Tuple">Tuple</span>[<a class="autorefs autorefs-internal" title="fluentiter.core.FluentIterator" href="#fluentiter.core.FluentIterator">FluentIterator</a>[<span title="fluentiter.core.T">T</span>], <a class="autorefs autorefs-internal" title="fluentiter.core.FluentIterator" href="#fluentiter.core.FluentIterator">FluentIterator</a>[<span title="fluentiter.core.T">T</span>]]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Two iterators, made from elements of this iterator</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">odds</span><span class="p">,</span> <span class="n">evens</span> <span class="o">=</span> <span class="n">iterator</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="nb">bool</span><span class="p">(</span><span class="n">i</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">odds</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [0, 2, 4, 6, 8]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evens</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [1, 3, 5, 7, 9]</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.peek" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">peek</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return the next element of the iterator, <strong>without</strong> advancing it.</p>
+<h5 id="fluentiter.core.FluentIterator.peek--notes">Notes</h5>
+<p>Calling peek multiple times consecutively always returns
+the same element</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="fluentiter.core.T">T</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The next element in the iterator</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>StopIteration</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If there is no next element to peek</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">myiter</span> <span class="o">=</span> <span class="n">iterator</span><span class="p">([</span><span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;k&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myiter</span><span class="o">.</span><span class="n">peek</span><span class="p">()</span>
+<span class="go">    p</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myiter</span><span class="o">.</span><span class="n">peek</span><span class="p">()</span>
+<span class="go">    p</span>
+<span class="go">    myiter.to_list()</span>
+<span class="go">    [&quot;p&quot;, &quot;e&quot;, &quot;e&quot;, &quot;k&quot;]</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.position" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">position</span><span class="p">(</span><span class="n">func</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Find the index of the first element for which <code>func(element) == True</code>.</p>
+<p>If no item matches or the iterator is empty, returns <code>-1</code>, this
+behaviour aligns with Pythons <code>str.find</code>.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>func</code></td>
+          <td>
+                <code><span title="typing.Callable">Callable</span>[[<span title="fluentiter.core.T">T</span>], bool]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Predicate to evaluta elements</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Index of the first element matching the predicate or -1</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="s2">&quot;bert&quot;</span><span class="p">,</span> <span class="s2">&quot;waldo&quot;</span><span class="p">,</span> <span class="s2">&quot;ernie&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">position</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">==</span> <span class="s2">&quot;waldo&quot;</span><span class="p">)</span>
+<span class="go">    1</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.product" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">product</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Return the product of all elements in this iterator.</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="fluentiter.core.T">T</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The product of all elements</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>EmptyIteratorError</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If called on an empty iterator</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span><span class="o">.</span><span class="n">product</span><span class="p">()</span>
+<span class="go">    24</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.reduce" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">reduce</span><span class="p">(</span><span class="n">func</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Reduce all elements into a single element by repeatedly applying <code>func</code>.</p>
+<p>The given function must take two parameters, the returned value
+of the previous iteration and the element of this iteration.
+For the first iteration this will be the
+first and second element of this iterator resepctively.</p>
+<h5 id="fluentiter.core.FluentIterator.reduce--notes">Notes</h5>
+<ul>
+<li>To return the elements instead of the reduction, use <code>.scan</code>.</li>
+<li>To specify an <code>initial_value</code>, use <code>.fold</code>.</li>
+</ul>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>func</code></td>
+          <td>
+                <code><span title="typing.Callable">Callable</span>[[<span title="fluentiter.core.T">T</span>, <span title="fluentiter.core.R">R</span>], <span title="fluentiter.core.R">R</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Reducing function</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="typing.Union">Union</span>[<span title="fluentiter.core.T">T</span>, <span title="fluentiter.core.R">R</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Reduced element or first element of the iterator if it only has one.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>EmptyIteratorError</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If called on an empty iterator</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="s2">&quot;reduce&quot;</span><span class="p">,</span> <span class="s2">&quot;reuse&quot;</span><span class="p">,</span> <span class="s2">&quot;recycle&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="go">    &quot;reduce reuse recycle&quot;</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.rolling_window" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">rolling_window</span><span class="p">(</span><span class="n">size</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Create an iterator of overlapping windows of size <code>size</code>.</p>
+<p>The windows will be yielded as tuples containing the original
+iterators elements</p>
+<h5 id="fluentiter.core.FluentIterator.rolling_window--notes">Notes</h5>
+<p>Requires extra <code>more</code></p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>size</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Size of the windows</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>RollingWindowIterator[<span title="fluentiter.core.T">T</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>An iterator of overlapping windows</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If <code>size</code> is &lt;= 0</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+      <p>Examples
+-------_</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>iterator([2, 3, 4, 5]).rolling_window(2).to_list()
+    [(2, 3), (3, 4), (4, 5)]</p>
+</blockquote>
+</blockquote>
+</blockquote>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.scan" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">scan</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Create an iterator which holds some internal state and applies some function
+using that state to every element, returning a tuple of the new state
+and a mapped element. The new state may then be used by the next iteration.</p>
+<h5 id="fluentiter.core.FluentIterator.scan--notes">Notes</h5>
+<ul>
+<li>
+<p>To end the iteration, the function should raise <code>StopScan</code>.</p>
+</li>
+<li>
+<p>For the curious: The state is returned instead of mutated directly,
+  as many elements in Python (e.g. integers) are immutable and need to be reassigned.</p>
+</li>
+</ul>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>initial_state</code></td>
+          <td>
+                <code><span title="fluentiter.core.FluentIterator.S">S</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Inital value of the state</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>func</code></td>
+          <td>
+                <code><span title="typing.Callable">Callable</span>[[<span title="fluentiter.core.FluentIterator.S">S</span>, <span title="fluentiter.core.T">T</span>], <span title="typing.Tuple">Tuple</span>[<span title="fluentiter.core.FluentIterator.S">S</span>, <span title="fluentiter.core.R">R</span>]]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Function to recieve the state and element as arguments</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="fluentiter.core.FluentIterator" href="#fluentiter.core.FluentIterator">FluentIterator</a>[<span title="fluentiter.core.R">R</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Mapped iterator</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">initial_state</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="p">((</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">sum</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">or</span> <span class="n">x</span><span class="p">),</span> <span class="nb">sum</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">or</span> <span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+<span class="go">    [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.size_hint" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">size_hint</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Get an estimate of the number of elements in
+this iterator or <code>None</code> if the value can not be
+estimated.</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="typing.Union">Union</span>[int, None]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Length hint</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.skip" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">skip</span><span class="p">(</span><span class="n">n</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Skip the first <code>n</code> elements of this iterator.
+After <code>n</code> elements have been skipped, all subsequent elements
+are yielded.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>n</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Number of elements to skip</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="fluentiter.core.FluentIterator" href="#fluentiter.core.FluentIterator">FluentIterator</a>[<span title="fluentiter.core.T">T</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Iterator which skips its first <code>n</code> elements</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="s2">&quot;do&quot;</span><span class="p">,</span> <span class="s2">&quot;not&quot;</span><span class="p">,</span> <span class="s2">&quot;pet&quot;</span><span class="p">,</span> <span class="s2">&quot;the&quot;</span><span class="p">,</span> <span class="s2">&quot;dog&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [&quot;pet&quot;, &quot;the&quot;, &quot;dog&quot;]</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.skip_while" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">skip_while</span><span class="p">(</span><span class="n">func</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Skip elements of this iterator by applying the given function to every
+element while it returns <code>True</code>. After the function has returned <code>False</code>,
+it will not be applied anymore and all subsequent items are yielded.</p>
+<p>The first element where the function returns <code>False</code> is also yielded.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>func</code></td>
+          <td>
+                <code><span title="typing.Callable">Callable</span>[[<span title="fluentiter.core.T">T</span>], bool]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Function to apply to every element</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="fluentiter.itertypes.SkipWhileIterator">SkipWhileIterator</span>[<span title="fluentiter.core.T">T</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Iterator which skips elements while <code>func</code> returns <code>True</code></p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">week</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Thursday&quot;</span><span class="p">,</span> <span class="s2">&quot;Friday&quot;</span><span class="p">,</span> <span class="s2">&quot;Saturday&quot;</span><span class="p">,</span> <span class="s2">&quot;Sunday&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">(</span><span class="n">week</span><span class="p">)</span><span class="o">.</span><span class="n">skip_while</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">!=</span> <span class="s2">&quot;Saturday&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [&quot;Saturday&quot;, &quot;Sunday&quot;]</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.step_by" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">step_by</span><span class="p">(</span><span class="n">size</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Steps over the iterator with steps of size <code>size</code>.
+The first element of the iterator is always returned,
+subsequent items are only returned if there index is a
+multiple of <code>size</code>.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>size</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Size of the step.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="fluentiter.core.FluentIterator" href="#fluentiter.core.FluentIterator">FluentIterator</a>[<span title="fluentiter.core.T">T</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Stepping iterator</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span><span class="o">.</span><span class="n">step_by</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [1, 3, 5]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span><span class="o">.</span><span class="n">step_by</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [1, 2, 3, 4, 5]</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.sum" class="doc doc-heading">
+          <code class="highlight language-python"><span class="nb">sum</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sum up all elements in this iterator</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[<span title="fluentiter.core.T">T</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The sum of all elements or <code>None</code> if iterator is empty</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">22</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="go">    42</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="go">    &quot;abc&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="go">    None</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.take" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">take</span><span class="p">(</span><span class="n">n</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Only yield the first <code>n</code> items of the iterator.
+After <code>n</code> elements have been yielded, the iterator
+will be exhausted.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>n</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Number of items to yield</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="fluentiter.core.FluentIterator" href="#fluentiter.core.FluentIterator">FluentIterator</a>[<span title="fluentiter.core.T">T</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Iterator which yields the first <code>n</code> items</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">music</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;on me&quot;</span><span class="p">,</span> <span class="s2">&quot;me out&quot;</span><span class="p">,</span> <span class="s2">&quot;that&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">(</span><span class="n">music</span><span class="p">)</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [&quot;on me&quot;, &quot;me out&quot;]</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.take_while" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">take_while</span><span class="p">(</span><span class="n">func</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Apply a given function to every element of the iterator and only
+yield elements while this function returns <code>True</code>. Once the function
+returns <code>False</code> the iterator will be exhausted and not yield any
+further items.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>func</code></td>
+          <td>
+                <code><span title="typing.Callable">Callable</span>[[<span title="fluentiter.core.T">T</span>], bool]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Function to apply to every element</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="fluentiter.itertypes.TakeWhileIterator">TakeWhileIterator</span>[<span title="fluentiter.core.T">T</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Iterator which yields elements until <code>func</code> returns <code>False</code></p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">week</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Saturday, &quot;</span><span class="n">Sunday</span><span class="s2">&quot;, &quot;</span><span class="n">Monday</span><span class="s2">&quot;, &quot;</span><span class="n">Tuesday</span><span class="s2">&quot;, &quot;</span><span class="n">Wednesday</span><span class="s2">&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">(</span><span class="n">week</span><span class="p">)</span><span class="o">.</span><span class="n">take_while</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;Saturday&quot;</span><span class="p">,</span> <span class="s2">&quot;Sunday&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;]</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.to_list" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">to_list</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Collect this iterator into a list, completely consuming it.
+This is just a convenience method for <code>list()</code>.</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="typing.List">List</span>[<span title="fluentiter.core.T">T</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Collected iterator</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="s2">&quot;bucket&quot;</span><span class="p">,</span> <span class="s2">&quot;to-do&quot;</span><span class="p">,</span> <span class="s2">&quot;wish&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [&quot;bucket&quot;, &quot;to-do&quot;, &quot;wish&quot;]</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.unzip" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">unzip</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Unzip an iterator of tuples into two iterators, by building the first one from all first
+elements of each tuple, and the second from all other elements of the tuples.</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="typing.Tuple">Tuple</span>[<a class="autorefs autorefs-internal" title="fluentiter.core.FluentIterator" href="#fluentiter.core.FluentIterator">FluentIterator</a>[<span title="fluentiter.core.T">T</span>], <a class="autorefs autorefs-internal" title="fluentiter.core.FluentIterator" href="#fluentiter.core.FluentIterator">FluentIterator</a>[<span title="fluentiter.core.U">U</span>]]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Two new iterators</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">morning</span><span class="p">,</span> <span class="n">evening</span> <span class="o">=</span> <span class="n">iterator</span><span class="p">([(</span><span class="s2">&quot;coffee&quot;</span><span class="p">,</span> <span class="s2">&quot;beer&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;pancake&quot;</span><span class="p">,</span> <span class="s2">&quot;pizza&quot;</span><span class="p">)])</span><span class="o">.</span><span class="n">unzip</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">morning</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [&quot;coffee&quot;, &quot;pancake&quot;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evening</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [&quot;beer&quot;, &quot;pizza&quot;]</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.zip" class="doc doc-heading">
+          <code class="highlight language-python"><span class="nb">zip</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Zip this iterator with another iterable, yielding 2-element tuples
+where the first element is an element from this iterator and the
+second element is an element of <code>other</code>.</p>
+<p>The iteration stops, as soon as one of the iterators is exhausted.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>other</code></td>
+          <td>
+                <code><span title="typing.Iterable">Iterable</span>[<span title="fluentiter.core.U">U</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>An Iterable to zip this iterator with</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="fluentiter.core.FluentIterator" href="#fluentiter.core.FluentIterator">FluentIterator</a>[<span title="typing.Tuple">Tuple</span>[<span title="fluentiter.core.T">T</span>, <span title="fluentiter.core.U">U</span>]]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Zipped iterator</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="s2">&quot;ping&quot;</span><span class="p">,</span> <span class="s2">&quot;ping&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">zip</span><span class="p">([</span><span class="s2">&quot;pong&quot;</span><span class="p">,</span> <span class="s2">&quot;pong&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [(&quot;ping&quot;, &quot;pong&quot;), (&quot;ping&quot;, &quot;pong&quot;)]</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.4e0fa4ba.min.js"></script>
+      
+    
+  </body>
+</html>
