@@ -45,7 +45,7 @@ needle = next(
 )
 ```
 
-See the [this example](./examples/parsing.py) for a more complete version.
+See the [this example](https://github.com/damiondoesthings/fluentiter/blob/main/examples/parsing.py) for a more complete version.
 
 ## Motivation
 
@@ -81,11 +81,10 @@ Of course there are the classic `map`, `filter`, and `reduce` functions, but als
 In total `FluentIterator` provides **35** methods to compose beautiful and easy to follow iteration
 patterns.
 Check the [API docs](https://damiondoesthings.github.io/fluentiter/) to see them all.
-TODO: I probably miscounted,
 
 ## Features
 
-- 35 cool fresh iterator methods
+- 36 cool fresh iterator methods
 - 100% Type annotated e.g. `iterator(["foo", "bar"]).map(len).to_list()` gets correctly inferred as `list[int]`
 - 100% Test coverage
 - 0 dependencies outside the Python standard library[^0]
@@ -93,12 +92,12 @@ TODO: I probably miscounted,
 ## Contributing
 
 The simplest way to contribute is to open an issue. If you would like to see some feature implemented or
-found a bug, head over [./issues].
+found a bug, head over to [the issues section](https://github.com/damiondoesthings/fluentiter/issues).
 
 ## Developing
 
 1. Clone the repository
-2. Install [https://python-poetry.org/](Poetry)
+2. Install [Poetry](https://python-poetry.org/)
 3. Install development dependencies with `poetry install`
 4. Enter the poetry shell with `poetry shell`
 
