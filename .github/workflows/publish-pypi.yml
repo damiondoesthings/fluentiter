@@ -8,9 +8,7 @@
 
 name: Publish Python Package
 
-on:
-  release:
-    types: [published]
+on: workflow_dispatch
 
 permissions:
   contents: read
