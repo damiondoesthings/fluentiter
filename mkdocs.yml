@@ -1,0 +1,14 @@
+site_name: FluentIter Documentation
+theme:
+  name: "material"
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+          python:
+            options:
+              docstring_style: "numpy"
+  - macros:
+      include_dir: "."
+markdown_extensions:
+  - footnotes
