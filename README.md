@@ -3,6 +3,12 @@
 Nicer iterator patterns for Python! Chain map, filter, zip, unzip, cycle, skip and scan like
 there is no tomorrow.
 
+Install with
+
+```bash
+pip install fluentiter
+```
+
 [Straight to the API docs 👉](https://damiondoesthings.github.io/fluentiter/api)
 
 ## TLDR:
