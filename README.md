@@ -121,6 +121,15 @@ All of the above: `poe all`
 
 Running `coverage html` will create a file `htmlcov/index.html` you can open to view the test coverage report
 
+## Changelog
+
++ 1.0.0
+    + initial release
++ 1.0.1
+    + fixed errors int readme
++ 1.1.0
+    + added `into(...)` method
+
 ## Special Thanks
 
 Thank you to all Rust maintainers for creating the [Iterator trait](https://doc.rust-lang.org/std/iter/trait.Iterator.html), which served as the main source of inspiration.

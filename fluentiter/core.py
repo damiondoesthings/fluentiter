@@ -1114,7 +1114,7 @@ class FluentIterator(Generic[T], Iterator[T]):
 
 
         Examples
-        -------_
+        --------
         >>> iterator([2, 3, 4, 5]).rolling_window(2).to_list()
             [(2, 3), (3, 4), (4, 5)]
         """
@@ -1123,6 +1123,36 @@ class FluentIterator(Generic[T], Iterator[T]):
         if size <= 0:
             raise ValueError(f"Size must be an integer >0. Got {size}")
         return RollingWindowIterator(self, size)
+
+    def into(self, into: Callable[["FluentIterator[T]"], R]) -> R:
+        """
+        Turn this iterator into something else, by calling
+        a function on it.
+
+        This is very useful for collecting the iterator into
+        a different kind of container, e.g. `set` or `tuple`
+
+        Notes
+        -----
+        This method consumes the iterator.
+
+        Parameters
+        ----------
+        into : Callable[[FluentIterator[T]], R]
+            Function or type to call on this iterator
+
+        Returns
+        -------
+        R
+            Return value of the given function or instance
+            of the given type
+
+        Examples
+        --------
+        >>> iterator([2, 3, 3, 4, 5, 5]).into(set)
+            {2, 3, 4, 5}
+        """
+        return into(self)
 
     def __iter__(self) -> "FluentIterator[T]":
         return self
