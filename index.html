@@ -489,7 +489,7 @@ needle = next(
     )
 )
 </code></pre>
-<p>See the <a href="./examples/parsing.py">this example</a> for a more complete version.</p>
+<p>See the <a href="https://github.com/damiondoesthings/fluentiter/blob/main/examples/parsing.py">this example</a> for a more complete version.</p>
 <h2 id="motivation">Motivation</h2>
 <p>To me Pythons iterator functions (i.e. <code>map</code>, <code>filter</code>, <code>zip</code>, etc.) always seemed backward.
 While generator expressions and list/dict/set comprehensions give you nice left-to-right readability,
@@ -512,22 +512,21 @@ fluent = iterator(bugs)
 <p>Of course there are the classic <code>map</code>, <code>filter</code>, and <code>reduce</code> functions, but also some more really useful features like <code>cycle</code> to repeat an iterator forever, <code>find</code> to find an element or even <code>partition</code> to turn your iterator into two.</p>
 <p>In total <code>FluentIterator</code> provides <strong>35</strong> methods to compose beautiful and easy to follow iteration
 patterns.
-Check the <a href="https://damiondoesthings.github.io/fluentiter/">API docs</a> to see them all.
-TODO: I probably miscounted,</p>
+Check the <a href="https://damiondoesthings.github.io/fluentiter/">API docs</a> to see them all.</p>
 <h2 id="features">Features</h2>
 <ul>
-<li>35 cool fresh iterator methods</li>
+<li>36 cool fresh iterator methods</li>
 <li>100% Type annotated e.g. <code>iterator(["foo", "bar"]).map(len).to_list()</code> gets correctly inferred as <code>list[int]</code></li>
 <li>100% Test coverage</li>
 <li>0 dependencies outside the Python standard library<sup id="fnref:0"><a class="footnote-ref" href="#fn:0">1</a></sup></li>
 </ul>
 <h2 id="contributing">Contributing</h2>
 <p>The simplest way to contribute is to open an issue. If you would like to see some feature implemented or
-found a bug, head over [./issues].</p>
+found a bug, head over to <a href="https://github.com/damiondoesthings/fluentiter/issues">the issues section</a>.</p>
 <h2 id="developing">Developing</h2>
 <ol>
 <li>Clone the repository</li>
-<li>Install <a href="Poetry">https://python-poetry.org/</a></li>
+<li>Install <a href="https://python-poetry.org/">Poetry</a></li>
 <li>Install development dependencies with <code>poetry install</code></li>
 <li>Enter the poetry shell with <code>poetry shell</code></li>
 </ol>
