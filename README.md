@@ -129,6 +129,8 @@ Running `coverage html` will create a file `htmlcov/index.html` you can open to 
     + fixed errors int readme
 + 1.1.0
     + added `into(...)` method
++ 1.1.1
+    + add `py.typed` marker file 
 
 ## Special Thanks
 
