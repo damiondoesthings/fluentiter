@@ -128,9 +128,13 @@ Running `coverage html` will create a file `htmlcov/index.html` you can open to 
 + 1.0.1
     + fixed errors int readme
 + 1.1.0
-    + added `into(...)` method
+    + add `into(...)` method
 + 1.1.1
     + add `py.typed` marker file 
++ 1.2.0
+    + add `tumbling_window` function
+    + fix mypy inference on `.flatten()` and `.flat_map`
+    + fix `more_itertools` being installed automatically
 
 ## Special Thanks
 

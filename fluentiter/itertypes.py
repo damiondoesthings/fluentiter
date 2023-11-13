@@ -257,7 +257,7 @@ class FlatMapIterator(fl.FluentIterator[R]):
     def __init__(
         self,
         it: fl.FluentIterator[T],
-        func: Callable[[T], Union[R, Iterable[R]]],
+        func: Callable[[T], Iterable[R]],
         exclude: Tuple[Type, ...],
     ) -> None:
         self._iterable = it.map(func).flatten(exclude=exclude)
@@ -315,3 +315,29 @@ class CycleIterator(fl.FluentIterator[T]):
 
     def __init__(self, it: fl.FluentIterator[T]) -> None:
         self._iterable = itertools.cycle(it)
+
+
+class TumblingWindowIterator(fl.FluentIterator[tuple[T, ...]]):
+    """
+    Iterator which yields non-overlapping tuples
+    comprised of the elements of another iterator.
+    """
+
+    __slots__ = ("_iterable",)
+
+    def __init__(self, it: fl.FluentIterator[T], size: int) -> None:
+        self._iterable = self._tumble(it, size)
+
+    def _tumble(
+        self, it: fl.FluentIterator[T], size: int
+    ) -> Generator[tuple[T, ...], None, None]:
+        while True:
+            elems = []
+            for _ in range(size):
+                try:
+                    elems.append(next(it))
+                except StopIteration:
+                    if len(elems) > 0:
+                        yield tuple(elems)
+                    return
+            yield tuple(elems)
