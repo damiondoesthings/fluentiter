@@ -37,6 +37,7 @@ if TYPE_CHECKING:
         StepByIterator,
         TakeNIterator,
         TakeWhileIterator,
+        TumblingWindowIterator,
         ZippedIterator,
     )
 
@@ -581,7 +582,7 @@ class FluentIterator(Generic[T], Iterator[T]):
 
     def flat_map(
         self: "FluentIterator[T]",
-        func: Callable[[T], Union[R, Iterable[R]]],
+        func: Callable[[T], Iterable[R]],
         exclude: Tuple[Type, ...] = (str, bytes),
     ) -> "FlatMapIterator[R]":
         """
@@ -616,7 +617,7 @@ class FluentIterator(Generic[T], Iterator[T]):
         return FlatMapIterator(self, func, exclude)
 
     def flatten(
-        self: "FluentIterator[Union[Inner, Iterable[Inner]]]",
+        self: "FluentIterator[Iterable[Inner]]",
         exclude: Tuple[Type, ...] = (str, bytes),
     ) -> "FlattenIterator[Inner]":
         """
@@ -1123,6 +1124,50 @@ class FluentIterator(Generic[T], Iterator[T]):
         if size <= 0:
             raise ValueError(f"Size must be an integer >0. Got {size}")
         return RollingWindowIterator(self, size)
+
+    def tumbling_window(self, size: int) -> "TumblingWindowIterator[T]":
+        """
+        Create an iterator of non-overlapping windows of at most size `size`.
+
+        The windows will be yielded as tuples containing the original
+        iterators elements.
+
+        If the count of elements in the iterator is not cleanly divisable by
+        `size`, the last tuple of elements will be shorter.
+        If this behaviour is undesirable, thos last tuples can be filtered out
+        easily. See the "Examples" section for an example.
+
+        Parameters
+        ----------
+        size : int
+            Size of the windows
+
+        Returns
+        -------
+        TumblingWindowIterator[T]
+            An iterator of overlapping windows
+
+        Raises
+        ------
+        ValueError
+            If `size` is <= 0
+
+
+        Examples
+        --------
+        >>> iterator([2, 3, 4, 5]).tumbling_window(2).to_list()
+            [(2, 3), (4, 5)]
+        >>> iterator([2, 3, 4, 5, 6]).tumbling_window(2).to_list()
+            [(2, 3), (4, 5), (6)]
+        >>> # filtering shorter tuples
+        >>> (iterator([2, 3, 4, 5, 6]).tumbling_window(2).filter(lambda x: len(x) == 2).to_list()
+            [(2, 3), (4, 5)]
+        """
+        from fluentiter.itertypes import TumblingWindowIterator
+
+        if size <= 0:
+            raise ValueError(f"Size must be an integer >0. Got {size}")
+        return TumblingWindowIterator(self, size)
 
     def into(self, into: Callable[["FluentIterator[T]"], R]) -> R:
         """
