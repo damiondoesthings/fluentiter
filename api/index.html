@@ -412,6 +412,26 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.into" class="md-nav__link">
+    into()
+  </a>
+  
+    <nav class="md-nav" aria-label="into()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.into--notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#fluentiter.core.FluentIterator.last" class="md-nav__link">
     last()
   </a>
@@ -626,6 +646,13 @@
           <li class="md-nav__item">
   <a href="#fluentiter.core.FluentIterator.to_list" class="md-nav__link">
     to_list()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.tumbling_window" class="md-nav__link">
+    tumbling_window()
   </a>
   
 </li>
@@ -841,6 +868,26 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.into" class="md-nav__link">
+    into()
+  </a>
+  
+    <nav class="md-nav" aria-label="into()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.into--notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#fluentiter.core.FluentIterator.last" class="md-nav__link">
     last()
   </a>
@@ -1055,6 +1102,13 @@
           <li class="md-nav__item">
   <a href="#fluentiter.core.FluentIterator.to_list" class="md-nav__link">
     to_list()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluentiter.core.FluentIterator.tumbling_window" class="md-nav__link">
+    tumbling_window()
   </a>
   
 </li>
@@ -2118,6 +2172,93 @@ Keep this in mind.</p>
 <span class="go">    [&quot;hot&quot;, &quot;dog&quot;, &quot;bun&quot;]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">lengths</span>
 <span class="go">    [3, 3, 3]</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.into" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">into</span><span class="p">(</span><span class="n">into</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Turn this iterator into something else, by calling
+a function on it.</p>
+<p>This is very useful for collecting the iterator into
+a different kind of container, e.g. <code>set</code> or <code>tuple</code></p>
+<h5 id="fluentiter.core.FluentIterator.into--notes">Notes</h5>
+<p>This method consumes the iterator.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>into</code></td>
+          <td>
+                <code><span title="typing.Callable">Callable</span>[[<a class="autorefs autorefs-internal" title="fluentiter.core.FluentIterator" href="#fluentiter.core.FluentIterator">FluentIterator</a>[<span title="fluentiter.core.T">T</span>]], <span title="fluentiter.core.R">R</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Function or type to call on this iterator</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="fluentiter.core.R">R</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Return value of the given function or instance
+of the given type</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span><span class="o">.</span><span class="n">into</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+<span class="go">    {2, 3, 4, 5}</span>
 </code></pre></div>
 
   </div>
@@ -3303,16 +3444,13 @@ iterators elements</p>
         </tr>
     </tbody>
   </table>
-      <p>Examples
--------_</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>iterator([2, 3, 4, 5]).rolling_window(2).to_list()
-    [(2, 3), (3, 4), (4, 5)]</p>
-</blockquote>
-</blockquote>
-</blockquote>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span><span class="o">.</span><span class="n">rolling_window</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [(2, 3), (3, 4), (4, 5)]</span>
+</code></pre></div>
 
   </div>
 
@@ -3997,6 +4135,122 @@ This is just a convenience method for <code>list()</code>.</p>
 <p><strong>Examples:</strong></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="s2">&quot;bucket&quot;</span><span class="p">,</span> <span class="s2">&quot;to-do&quot;</span><span class="p">,</span> <span class="s2">&quot;wish&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
 <span class="go">    [&quot;bucket&quot;, &quot;to-do&quot;, &quot;wish&quot;]</span>
+</code></pre></div>
+
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="fluentiter.core.FluentIterator.tumbling_window" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">tumbling_window</span><span class="p">(</span><span class="n">size</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Create an iterator of non-overlapping windows of at most size <code>size</code>.</p>
+<p>The windows will be yielded as tuples containing the original
+iterators elements.</p>
+<p>If the count of elements in the iterator is not cleanly divisable by
+<code>size</code>, the last tuple of elements will be shorter.
+If this behaviour is undesirable, thos last tuples can be filtered out
+easily. See the "Examples" section for an example.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>size</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Size of the windows</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="fluentiter.itertypes.TumblingWindowIterator">TumblingWindowIterator</span>[<span title="fluentiter.core.T">T</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>An iterator of overlapping windows</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If <code>size</code> is &lt;= 0</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span><span class="o">.</span><span class="n">tumbling_window</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [(2, 3), (4, 5)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterator</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span><span class="o">.</span><span class="n">tumbling_window</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [(2, 3), (4, 5), (6)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># filtering shorter tuples</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">iterator</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span><span class="o">.</span><span class="n">tumbling_window</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="go">    [(2, 3), (4, 5)]</span>
 </code></pre></div>
 
   </div>

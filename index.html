@@ -305,6 +305,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#changelog" class="md-nav__link">
+    Changelog
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#special-thanks" class="md-nav__link">
     Special Thanks
   </a>
@@ -434,6 +441,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#changelog" class="md-nav__link">
+    Changelog
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#special-thanks" class="md-nav__link">
     Special Thanks
   </a>
@@ -510,12 +524,12 @@ fluent = iterator(bugs)
 </code></pre>
 <p>The <code>FluentIterator</code> provides a rich set of methods you can call <strong>and chain together</strong> to your liking:</p>
 <p>Of course there are the classic <code>map</code>, <code>filter</code>, and <code>reduce</code> functions, but also some more really useful features like <code>cycle</code> to repeat an iterator forever, <code>find</code> to find an element or even <code>partition</code> to turn your iterator into two.</p>
-<p>In total <code>FluentIterator</code> provides <strong>35</strong> methods to compose beautiful and easy to follow iteration
+<p>In total <code>FluentIterator</code> provides <strong>37</strong> methods to compose beautiful and easy to follow iteration
 patterns.
 Check the <a href="https://damiondoesthings.github.io/fluentiter/">API docs</a> to see them all.</p>
 <h2 id="features">Features</h2>
 <ul>
-<li>36 cool fresh iterator methods</li>
+<li>37 cool fresh iterator methods</li>
 <li>100% Type annotated e.g. <code>iterator(["foo", "bar"]).map(len).to_list()</code> gets correctly inferred as <code>list[int]</code></li>
 <li>100% Test coverage</li>
 <li>0 dependencies outside the Python standard library<sup id="fnref:0"><a class="footnote-ref" href="#fn:0">1</a></sup></li>
@@ -544,6 +558,31 @@ under fluentiters license.</p>
 <p>All of the above: <code>poe all</code></p>
 <h3 id="viewing-the-coverage-report">Viewing the coverage report</h3>
 <p>Running <code>coverage html</code> will create a file <code>htmlcov/index.html</code> you can open to view the test coverage report</p>
+<h2 id="changelog">Changelog</h2>
+<ul>
+<li>1.0.0<ul>
+<li>initial release</li>
+</ul>
+</li>
+<li>1.0.1<ul>
+<li>fixed errors int readme</li>
+</ul>
+</li>
+<li>1.1.0<ul>
+<li>add <code>into(...)</code> method</li>
+</ul>
+</li>
+<li>1.1.1<ul>
+<li>add <code>py.typed</code> marker file </li>
+</ul>
+</li>
+<li>1.2.0<ul>
+<li>add <code>tumbling_window</code> function</li>
+<li>fix mypy inference on <code>.flatten()</code> and <code>.flat_map</code></li>
+<li>fix <code>more_itertools</code> being installed automatically</li>
+</ul>
+</li>
+</ul>
 <h2 id="special-thanks">Special Thanks</h2>
 <p>Thank you to all Rust maintainers for creating the <a href="https://doc.rust-lang.org/std/iter/trait.Iterator.html">Iterator trait</a>, which served as the main source of inspiration.</p>
 <h1 id="getting-started">Getting started</h1>
