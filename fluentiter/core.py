@@ -934,7 +934,9 @@ class FluentIterator(Generic[T], Iterator[T]):
         from fluentiter.exceptions import EmptyIteratorError
 
         try:
-            return max(self)  # type: ignore[type-var]
+            if key is None:
+                return max(self)  # type: ignore[type-var]
+            return max(self, key=key)
         except ValueError:
             raise EmptyIteratorError("Can not get `max` of empty iterator")
 
@@ -968,7 +970,9 @@ class FluentIterator(Generic[T], Iterator[T]):
         from fluentiter.exceptions import EmptyIteratorError
 
         try:
-            return min(self)  # type: ignore[type-var]
+            if key is None:
+                return min(self)  # type: ignore[type-var]
+            return min(self, key=key)
         except ValueError:
             raise EmptyIteratorError("Can not get `min` of empty iterator")
 
