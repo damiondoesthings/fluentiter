@@ -135,6 +135,8 @@ Running `coverage html` will create a file `htmlcov/index.html` you can open to 
     + add `tumbling_window` function
     + fix mypy inference on `.flatten()` and `.flat_map`
     + fix `more_itertools` being installed automatically
++ 1.2.1
+  + fix parameter key not being respected in `.min` and `.max`
 
 ## Special Thanks
 

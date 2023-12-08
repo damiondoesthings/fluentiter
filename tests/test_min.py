@@ -15,3 +15,9 @@ def test_max(numberlist: list):
 def test_min_empty():
     with pytest.raises(EmptyIteratorError):
         iterator([]).min()
+
+
+@given(st.lists(st.tuples(st.integers(), st.integers()), min_size=1))
+def test_min_key(numberlist: list):
+    true_min = min(numberlist, key=lambda x: x[1])
+    assert iterator(numberlist).min(key=lambda x: x[1]) == true_min
