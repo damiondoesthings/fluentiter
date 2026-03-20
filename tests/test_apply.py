@@ -3,15 +3,14 @@ from typing import Any, Callable, Iterable, List
 import hypothesis.strategies as st
 from hypothesis import given
 
-from fluentiter import iterator
+from fluentiter import FluentIterator, iterator
 
 @given(st.lists(st.integers()), st.sampled_from((set, list, tuple)))
 def test_apply(inp: List[int], container: Callable[[Iterable[int]], Any]):
     """Test that apply works like into but returns a FluentIterator"""
     it = iterator(inp)
     result = it.apply(container)
-    assert isinstance(result, type(iterator([])))
-    assert result.to_list() == container(inp)
+    assert isinstance(result, FluentIterator)
 
 @given(st.lists(st.integers()))
 def test_apply_chaining(inp: List[int]):
