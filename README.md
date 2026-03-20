@@ -76,15 +76,15 @@ fluent = iterator(bugs)
 
 The `FluentIterator` provides a rich set of methods you can call **and chain together** to your liking:
 
-Of course there are the classic `map`, `filter`, and `reduce` functions, but also some more really useful features like `cycle` to repeat an iterator forever, `find` to find an element or even `partition` to turn your iterator into two.
+Of course there are the classic `map`, `filter`, and `reduce` functions, but also some more really useful features like `cycle` to repeat an iterator forever, `find` to find an element, `into` to collect into containers, or `apply` to transform and continue chaining. There's even `partition` to turn your iterator into two.
 
-In total `FluentIterator` provides **37** methods to compose beautiful and easy to follow iteration
+In total `FluentIterator` provides **38** methods to compose beautiful and easy to follow iteration
 patterns.
 Check the [API docs](https://damiondoesthings.github.io/fluentiter/) to see them all.
 
 ## Features
 
-- 37 cool fresh iterator methods
+- 38 cool fresh iterator methods
 - 100% Type annotated e.g. `iterator(["foo", "bar"]).map(len).to_list()` gets correctly inferred as `list[int]`
 - 100% Test coverage
 - 0 dependencies outside the Python standard library[^0]
@@ -130,13 +130,15 @@ Running `coverage html` will create a file `htmlcov/index.html` you can open to 
 + 1.1.0
     + add `into(...)` method
 + 1.1.1
-    + add `py.typed` marker file 
+    + add `py.typed` marker file
 + 1.2.0
     + add `tumbling_window` function
     + fix mypy inference on `.flatten()` and `.flat_map`
     + fix `more_itertools` being installed automatically
 + 1.2.1
   + fix parameter key not being respected in `.min` and `.max`
++ 1.3.0
+  + add `apply(...)` method
 
 ## Special Thanks
 
