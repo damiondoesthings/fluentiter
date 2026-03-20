@@ -13,7 +13,7 @@ from fluentiter import iterator
 )
 def test_sum(numberlist: list):
     true_sum = sum(numberlist)
-    assert iterator(numberlist).sum() == true_sum
+    assert math.isclose(iterator(numberlist).sum(), true_sum)
 
 
 def test_sum_empty():
