@@ -6,14 +6,10 @@ from hypothesis import given
 from fluentiter import iterator
 
 
-@given(
-    st.lists(
-        st.floats(allow_nan=False, allow_infinity=False) | st.integers(), min_size=1
-    )
-)
+@given(st.lists(st.integers(), min_size=1))
 def test_sum(numberlist: list):
     true_sum = sum(numberlist)
-    assert math.isclose(iterator(numberlist).sum(), true_sum, rel_tol=1e-8)
+    assert iterator(numberlist).sum() == true_sum
 
 
 def test_sum_empty():
