@@ -29,7 +29,6 @@ dev = [
     "ruff>=0.0.282,<0.0.283",
     "hypothesis>=6.82.0,<7",
     "poethepoet>=0.23.0,<0.24",
-    "ipykernel>=6.25.2,<7",
     "coverage>=7.3.1,<8",
     "isort>=5.12.0,<6",
 ]
