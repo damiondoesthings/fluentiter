@@ -1203,6 +1203,36 @@ class FluentIterator(Generic[T], Iterator[T]):
         """
         return into(self)
 
+    def apply(self, func: Callable[["FluentIterator[T]"], Iterable[U]]) -> "FluentIterator[U]":
+        """
+        Apply a function to this iterator and wrap the result back into a FluentIterator.
+
+        This is similar to `.into()` but always returns a FluentIterator, making it
+        useful for chaining operations that transform the iterator.
+
+        Notes
+        -----
+        This method consumes the iterator.
+
+        Parameters
+        ----------
+        func : Callable[[FluentIterator[T]], Iterable[U]]
+            Function to apply to this iterator
+
+        Returns
+        -------
+        FluentIterator[U]
+            A new FluentIterator wrapping the result of the function
+
+        Examples
+        --------
+        >>> iterator([2, 3, 3, 4, 5, 5]).apply(set).map(lambda x: x * 2).to_list()
+            [4, 6, 8, 10]
+        """
+        from fluentiter import iterator
+        result = func(self)
+        return iterator(result)
+
     def __iter__(self) -> "FluentIterator[T]":
         return self
 
